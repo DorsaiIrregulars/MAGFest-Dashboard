@@ -18,7 +18,7 @@
     {
         "id": "25fcc8c591bf5c97",
         "type": "tab",
-        "label": "SlackBot",
+        "label": "Display",
         "disabled": false,
         "info": "",
         "env": []
@@ -994,7 +994,7 @@
         "type": "debug",
         "z": "89faa08e6ceba514",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1055,28 +1055,12 @@
         "wires": []
     },
     {
-        "id": "4b9895566f09198e",
-        "type": "debug",
-        "z": "25fcc8c591bf5c97",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 480,
-        "y": 160,
-        "wires": []
-    },
-    {
         "id": "57dd4c4998b12b3b",
         "type": "freeboard",
         "z": "25fcc8c591bf5c97",
         "name": "DISchedule",
-        "x": 480,
-        "y": 320,
+        "x": 510,
+        "y": 220,
         "wires": []
     },
     {
@@ -1089,7 +1073,6 @@
         "y": 220,
         "wires": [
             [
-                "4b9895566f09198e",
                 "bdfe4e9e09512596",
                 "57dd4c4998b12b3b"
             ]
@@ -1102,8 +1085,8 @@
         "name": "",
         "mode": "return",
         "links": [],
-        "x": 455,
-        "y": 220,
+        "x": 315,
+        "y": 80,
         "wires": []
     }
 ]
