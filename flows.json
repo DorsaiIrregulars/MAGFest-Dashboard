@@ -339,14 +339,6 @@
         "hidden": false
     },
     {
-        "id": "fe9fe63df383efbc",
-        "type": "slack-controller",
-        "name": "RedWombatSlack",
-        "appToken": "xapp-1-A02T3R6LHTJ-2900419333172-c997978e4b3df42c6c9be5a592aa32b6f2b27d4d10f0beadbbc9dfd62859710c",
-        "tokenType": "str",
-        "listenEvents": "app_mention,message.app_home, message, message.im, message.mpim"
-    },
-    {
         "id": "5eb0bd6b.74b794",
         "type": "function",
         "z": "2924702c.b33a7",
@@ -1037,20 +1029,6 @@
         ]
     },
     {
-        "id": "bc8eede72b1a915e",
-        "type": "slack-listen",
-        "z": "25fcc8c591bf5c97",
-        "slack": "fe9fe63df383efbc",
-        "name": "",
-        "x": 260,
-        "y": 160,
-        "wires": [
-            [
-                "4b9895566f09198e"
-            ]
-        ]
-    },
-    {
         "id": "2b226e356ce68c6c",
         "type": "subflow:6f90ad3f.f78d24",
         "z": "25fcc8c591bf5c97",
@@ -1073,6 +1051,15 @@
         "statusType": "auto",
         "x": 480,
         "y": 160,
+        "wires": []
+    },
+    {
+        "id": "57dd4c4998b12b3b",
+        "type": "freeboard",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "x": 470,
+        "y": 320,
         "wires": []
     }
 ]
