@@ -206,8 +206,8 @@ var settings = module.exports = {
      */
     //httpAdminRoot: '/admin',
     // Move the admin UI
-    //httpAdminRoot: '/editor',
-    httpAdminRoot: false,
+    httpAdminRoot: '/editor',
+    // httpAdminRoot: false,
     /** The following property can be used to add a custom middleware function
      * in front of all admin http routes. For example, to set custom http
      * headers. It can be a single function or an array of middleware functions.
