@@ -206,8 +206,8 @@ var settings = module.exports = {
      */
     //httpAdminRoot: '/admin',
     // Move the admin UI
-    httpAdminRoot: '/editor',
-
+    //httpAdminRoot: '/editor',
+    httpAdminRoot: false
     /** The following property can be used to add a custom middleware function
      * in front of all admin http routes. For example, to set custom http
      * headers. It can be a single function or an array of middleware functions.
@@ -266,7 +266,7 @@ var settings = module.exports = {
      */
     //httpStatic: '/home/nol/node-red-static/',
     // Serve up the welcome page
-    httpStatic: path.join(__dirname, "public"),
+    // httpStatic: path.join(__dirname, "public"),
 
     /*******************************************************************************
      * Runtime Settings
