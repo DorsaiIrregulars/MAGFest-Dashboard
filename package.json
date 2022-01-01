@@ -20,7 +20,7 @@
         "node-red": "latest",
         "node-red-contrib-buffer-parser": "latest",
         "node-red-contrib-chronos": "latest",
-        "node-red-contrib-freeboard": "0.0.7",
+        "node-red-contrib-freeboard": "ksonney/node-red-contrib-freeboard",
         "node-red-contrib-spreadsheet-in": "~0.6.0",
         "node-red-contrib-string": "latest",
         "node-red-contrib-ui-led": "latest",
@@ -31,6 +31,7 @@
         "node-red-node-email": "latest",
         "node-red-node-ui-list": "latest",
         "node-red-node-ui-table": "latest",
+        "freeboard": "latest",
         "redis": "3.0.2",
         "when": "3.7.8"
     }
