@@ -245,7 +245,9 @@
             "e3d1253d21cb8d14"
         ],
         "x": 14,
-        "y": 399
+        "y": 399,
+        "w": 392,
+        "h": 162
     },
     {
         "id": "8ae85c804dc630f2",
@@ -284,7 +286,9 @@
             "79211ed51f80c95c"
         ],
         "x": 434,
-        "y": 399
+        "y": 399,
+        "w": 192,
+        "h": 162
     },
     {
         "id": "930933373b4d5491",
@@ -881,10 +885,11 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 870,
+        "x": 850,
         "y": 280,
         "wires": []
     },
@@ -931,7 +936,7 @@
         "rules": [
             {
                 "t": "move",
-                "p": "payload.sha",
+                "p": "payload",
                 "pt": "msg",
                 "to": "temp",
                 "tot": "msg"
@@ -942,7 +947,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 650,
+        "x": 630,
         "y": 160,
         "wires": [
             [
@@ -960,15 +965,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "{\"content\": $base64encode(payload)}",
+                "to": "{ \"content\": $base64encode(payload)}",
                 "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "payload.sha",
-                "pt": "msg",
-                "to": "temp",
-                "tot": "msg"
             },
             {
                 "t": "set",
@@ -978,9 +976,39 @@
                 "tot": "str"
             },
             {
-                "t": "delete",
-                "p": "temp",
-                "pt": "msg"
+                "t": "set",
+                "p": "payload.owner",
+                "pt": "msg",
+                "to": "ksonney",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.repo",
+                "pt": "msg",
+                "to": "nodered-heroku",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.path",
+                "pt": "msg",
+                "to": "package.json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.encoding",
+                "pt": "msg",
+                "to": "base64",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.sha",
+                "pt": "msg",
+                "to": "temp.sha",
+                "tot": "msg"
             }
         ],
         "action": "",
