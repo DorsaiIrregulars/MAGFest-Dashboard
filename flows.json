@@ -11,28 +11,28 @@
         "id": "3827b8c0.6c5468",
         "type": "tab",
         "label": "Home + Hybuild",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
         "id": "cf48a4fe2aef05dc",
         "type": "tab",
         "label": "Map + Netatmo",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
         "id": "cdd0d95b0f6f8604",
         "type": "tab",
         "label": "Sensors",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
         "id": "41cb18232e7c1de3",
         "type": "tab",
         "label": "Exercise",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
@@ -47,7 +47,7 @@
         "id": "410304f236fca528",
         "type": "tab",
         "label": "Alexa",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -55,7 +55,7 @@
         "id": "e316d93c3900f83e",
         "type": "tab",
         "label": "Testbed",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
