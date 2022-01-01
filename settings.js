@@ -154,7 +154,7 @@ var settings = module.exports = {
     /** The following property can be used to cause insecure HTTP connections to
      * be redirected to HTTPS.
      */
-    //requireHttps: true,
+    requireHttps: true,
 
     /** To password protect the node-defined HTTP endpoints (httpNodeRoot),
      * including node-red-dashboard, or the static content (httpStatic), the
@@ -224,7 +224,7 @@ var settings = module.exports = {
      * can be used to specifiy a different root path. If set to false, this is
      * disabled.
      */
-    //httpNodeRoot: '/red-nodes',
+    httpNodeRoot: '/web',
 
     /** The following property can be used to configure cross-origin resource sharing
      * in the HTTP nodes.
