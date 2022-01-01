@@ -20,6 +20,7 @@
         "node-red": "latest",
         "node-red-contrib-buffer-parser": "latest",
         "node-red-contrib-chronos": "latest",
+        "node-red-contrib-spreadsheet-in": "~0.6.0",
         "node-red-contrib-string": "latest",
         "node-red-contrib-ui-led": "latest",
         "node-red-contrib-ui-media": "latest",
