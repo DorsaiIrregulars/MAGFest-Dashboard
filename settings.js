@@ -79,7 +79,7 @@ var settings = module.exports = {
      */
     //credentialSecret: "a-secret-key",
     // Disabled Credential Secret
-    credentialSecret: false,
+    credentialSecret: "horse-blanket-bingo"
 
     /** By default, the flow JSON will be formatted over multiple lines making
      * it easier to compare changes when using version control.
