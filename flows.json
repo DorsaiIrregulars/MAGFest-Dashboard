@@ -293,15 +293,6 @@
         }
     },
     {
-        "id": "bf61264521fde63b",
-        "type": "ui_link",
-        "name": "Editor",
-        "link": "https://nodered-on-cloud.herokuapp.com/editor",
-        "icon": "open_in_browser",
-        "target": "iframe",
-        "order": 5
-    },
-    {
         "id": "926d6874.375768",
         "type": "ui_group",
         "name": "Splash screen",
@@ -317,14 +308,6 @@
         "name": "Home",
         "icon": "home",
         "order": 1,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "b63d1f91.68095",
-        "type": "ui_tab",
-        "name": "Files",
-        "icon": "folder_open",
         "disabled": false,
         "hidden": false
     },
