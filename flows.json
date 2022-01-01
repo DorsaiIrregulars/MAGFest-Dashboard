@@ -8,6 +8,14 @@
         "env": []
     },
     {
+        "id": "89faa08e6ceba514",
+        "type": "tab",
+        "label": "DI Schedule Parse",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "2924702c.b33a7",
         "type": "subflow",
         "name": "ui-table handler",
@@ -177,6 +185,17 @@
         }
     },
     {
+        "id": "6f90ad3f.f78d24",
+        "type": "subflow",
+        "name": "Catch Errors",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [],
+        "env": [],
+        "color": "#DDAA99"
+    },
+    {
         "id": "a14f81bfbb849ce6",
         "type": "ui_base",
         "theme": {
@@ -310,6 +329,25 @@
         "hidden": false
     },
     {
+        "id": "87f8e49c5062a93e",
+        "type": "ui_group",
+        "name": "DI Test",
+        "tab": "c6309067555db8ae",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c6309067555db8ae",
+        "type": "ui_tab",
+        "name": "DI",
+        "icon": "fa-fire",
+        "disabled": false,
+        "hidden": false
+    },
+    {
         "id": "5eb0bd6b.74b794",
         "type": "function",
         "z": "2924702c.b33a7",
@@ -327,6 +365,36 @@
             []
         ],
         "icon": "font-awesome/fa-table"
+    },
+    {
+        "id": "9210b844.66df98",
+        "type": "debug",
+        "z": "6f90ad3f.f78d24",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 630,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "d3a4ec5c.756a9",
+        "type": "catch",
+        "z": "6f90ad3f.f78d24",
+        "name": "",
+        "scope": null,
+        "uncaught": true,
+        "x": 240,
+        "y": 220,
+        "wires": [
+            [
+                "9210b844.66df98"
+            ]
+        ]
     },
     {
         "id": "9c09e087.a48e7",
@@ -456,7 +524,7 @@
         "type": "debug",
         "z": "3c1975f87cd0cabf",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -492,7 +560,7 @@
         "type": "debug",
         "z": "3c1975f87cd0cabf",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -831,6 +899,141 @@
         "wires": [
             [
                 "ae8ddf10.868fd"
+            ]
+        ]
+    },
+    {
+        "id": "484225edefb17e63",
+        "type": "subflow:6f90ad3f.f78d24",
+        "z": "89faa08e6ceba514",
+        "name": "",
+        "x": 100,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "0713fc821fba8f84",
+        "type": "inject",
+        "z": "89faa08e6ceba514",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "*/30 0-23 * * *",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "d81b869537bc86fd"
+            ]
+        ]
+    },
+    {
+        "id": "79b008bcb1590862",
+        "type": "ui_list",
+        "z": "89faa08e6ceba514",
+        "group": "87f8e49c5062a93e",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "lineType": "three",
+        "actionType": "none",
+        "allowHTML": false,
+        "outputs": 0,
+        "topic": "",
+        "x": 190,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "9d864fb1ed6525e7",
+        "type": "book",
+        "z": "89faa08e6ceba514",
+        "name": "",
+        "raw": false,
+        "x": 270,
+        "y": 160,
+        "wires": [
+            [
+                "35b19e184d2997d4"
+            ]
+        ]
+    },
+    {
+        "id": "35b19e184d2997d4",
+        "type": "sheet",
+        "z": "89faa08e6ceba514",
+        "name": "",
+        "sheetName": "Schedule",
+        "x": 410,
+        "y": 160,
+        "wires": [
+            [
+                "9050d9329e7d8f4c"
+            ]
+        ]
+    },
+    {
+        "id": "9050d9329e7d8f4c",
+        "type": "sheet-to-json",
+        "z": "89faa08e6ceba514",
+        "name": "",
+        "raw": "false",
+        "range": "",
+        "header": "default",
+        "blankrows": false,
+        "x": 570,
+        "y": 160,
+        "wires": [
+            [
+                "74db4799d4b6dd13"
+            ]
+        ]
+    },
+    {
+        "id": "74db4799d4b6dd13",
+        "type": "debug",
+        "z": "89faa08e6ceba514",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "d81b869537bc86fd",
+        "type": "http request",
+        "z": "89faa08e6ceba514",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQcQmdLXBFodwXW42qo1HxS6_rFQYSARbGVFlR4lMFcgHrqYjqepbVg5_4pQnsN3F1ibvEQYPno2wX-/pub?output=xlsx",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 110,
+        "y": 160,
+        "wires": [
+            [
+                "9d864fb1ed6525e7"
             ]
         ]
     }
