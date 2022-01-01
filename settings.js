@@ -399,6 +399,7 @@ var settings = module.exports = {
                 mode: "manual"
             }
         },
+        tours: false,
         codeEditor: {
             /** Select the text editor component used by the editor.
              * Defaults to "ace", but can be set to "ace" or "monaco"
