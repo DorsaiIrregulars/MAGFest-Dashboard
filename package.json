@@ -20,7 +20,7 @@
         "node-red": "latest",
         "node-red-contrib-buffer-parser": "latest",
         "node-red-contrib-chronos": "latest",
-        "node-red-contrib-slack-socket": "~0.1.0",
+        "node-red-contrib-freeboard": "0.0.7",
         "node-red-contrib-spreadsheet-in": "~0.6.0",
         "node-red-contrib-string": "latest",
         "node-red-contrib-ui-led": "latest",
