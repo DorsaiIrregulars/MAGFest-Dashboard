@@ -245,9 +245,7 @@
             "e3d1253d21cb8d14"
         ],
         "x": 14,
-        "y": 399,
-        "w": 392,
-        "h": 162
+        "y": 399
     },
     {
         "id": "8ae85c804dc630f2",
@@ -286,9 +284,7 @@
             "79211ed51f80c95c"
         ],
         "x": 434,
-        "y": 399,
-        "w": 192,
-        "h": 162
+        "y": 399
     },
     {
         "id": "930933373b4d5491",
@@ -1124,7 +1120,8 @@
             [
                 "f92e1e8dffe158f7",
                 "98b5b9035834b822",
-                "71c40b7254660299"
+                "71c40b7254660299",
+                "added0aa3567589e"
             ]
         ]
     },
@@ -1206,6 +1203,52 @@
         "reg": false,
         "x": 330,
         "y": 240,
+        "wires": [
+            [
+                "ae8ddf10.868fd"
+            ]
+        ]
+    },
+    {
+        "id": "fbeea8751b3d9607",
+        "type": "inject",
+        "z": "3c1975f87cd0cabf",
+        "name": "push to GitHub",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 340,
+        "y": 380,
+        "wires": [
+            [
+                "added0aa3567589e"
+            ]
+        ]
+    },
+    {
+        "id": "added0aa3567589e",
+        "type": "change",
+        "z": "3c1975f87cd0cabf",
+        "name": "package.json",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "settings.js",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 340,
         "wires": [
             [
                 "ae8ddf10.868fd"
