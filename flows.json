@@ -1232,7 +1232,7 @@
         "id": "added0aa3567589e",
         "type": "change",
         "z": "3c1975f87cd0cabf",
-        "name": "package.json",
+        "name": "settings.js",
         "rules": [
             {
                 "t": "set",
@@ -1247,7 +1247,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
+        "x": 320,
         "y": 340,
         "wires": [
             [
