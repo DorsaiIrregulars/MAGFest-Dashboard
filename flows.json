@@ -515,7 +515,7 @@
         "type": "debug",
         "z": "3c1975f87cd0cabf",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -551,7 +551,7 @@
         "type": "debug",
         "z": "3c1975f87cd0cabf",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -621,13 +621,6 @@
                 "p": "payload.repo",
                 "pt": "msg",
                 "to": "nodered-heroku",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload.path",
-                "pt": "msg",
-                "to": "package.json",
                 "tot": "str"
             },
             {
@@ -901,9 +894,9 @@
         "rules": [
             {
                 "t": "set",
-                "p": "fileame",
+                "p": "filename",
                 "pt": "msg",
-                "to": "freeboard-start-17154.json",
+                "to": "freeboard_start-17154.json",
                 "tot": "str"
             }
         ],
