@@ -894,6 +894,52 @@
         ]
     },
     {
+        "id": "0f262e77bb5b55ab",
+        "type": "change",
+        "z": "3c1975f87cd0cabf",
+        "name": "freeboard-start",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fileame",
+                "pt": "msg",
+                "to": "freeboard-start-17154,json",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 420,
+        "wires": [
+            [
+                "ae8ddf10.868fd"
+            ]
+        ]
+    },
+    {
+        "id": "6f28751f52103c99",
+        "type": "inject",
+        "z": "3c1975f87cd0cabf",
+        "name": "push to GitHub",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 320,
+        "y": 480,
+        "wires": [
+            [
+                "0f262e77bb5b55ab"
+            ]
+        ]
+    },
+    {
         "id": "484225edefb17e63",
         "type": "subflow:6f90ad3f.f78d24",
         "z": "89faa08e6ceba514",
@@ -979,7 +1025,7 @@
         "name": "",
         "raw": "false",
         "range": "",
-        "header": "A",
+        "header": "default",
         "blankrows": false,
         "x": 570,
         "y": 160,
@@ -994,7 +1040,7 @@
         "type": "debug",
         "z": "89faa08e6ceba514",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1059,8 +1105,8 @@
         "type": "freeboard",
         "z": "25fcc8c591bf5c97",
         "name": "DISchedule",
-        "x": 510,
-        "y": 220,
+        "x": 650,
+        "y": 440,
         "wires": []
     },
     {
