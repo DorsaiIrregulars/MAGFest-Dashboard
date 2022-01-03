@@ -901,9 +901,9 @@
         "rules": [
             {
                 "t": "set",
-                "p": "fileame",
+                "p": "filename",
                 "pt": "msg",
-                "to": "freeboard-start-17154.json",
+                "to": "freeboard_start-17154.json",
                 "tot": "str"
             }
         ],
