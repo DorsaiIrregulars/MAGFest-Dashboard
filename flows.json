@@ -1197,25 +1197,14 @@
         "wires": []
     },
     {
-        "id": "956b362d3c90f8d8",
-        "type": "fs-file-lister",
+        "id": "ec9f166d1ac318ce",
+        "type": "comment",
         "z": "25fcc8c591bf5c97",
-        "name": "",
-        "start": "data",
-        "pattern": "*.*",
-        "folders": "*",
-        "hidden": false,
-        "lstype": "both",
-        "path": true,
-        "single": true,
-        "depth": 0,
-        "stat": true,
-        "showWarnings": false,
-        "x": 280,
-        "y": 160,
-        "wires": [
-            []
-        ]
+        "name": "How to Freeboard",
+        "info": "By default, most Heroku node-red \ninstallations use `/web` as a prefix for \nthings like the Dashboard and other http \nservices. \n\nFreeboard hates that. If you are using the \nfreeboard flows (and I also recommend the \npatched `ksonney/node-red-contrib-freeboard' \nplugin instead of the default from the \npalate), you should ABSOLUTELY change that \nto `/app` in settings.js and the Procfile,\nwhich is the default for this repo.",
+        "x": 130,
+        "y": 360,
+        "wires": []
     },
     {
         "id": "53035f704bb7e6be",
@@ -2400,6 +2389,27 @@
             [
                 "ced80261c7808b0f"
             ]
+        ]
+    },
+    {
+        "id": "52a6d2c32c6aa20f",
+        "type": "fs-file-lister",
+        "z": "1f0274a4dfdeb367",
+        "name": "",
+        "start": "data",
+        "pattern": "*.*",
+        "folders": "*",
+        "hidden": false,
+        "lstype": "both",
+        "path": true,
+        "single": true,
+        "depth": 0,
+        "stat": true,
+        "showWarnings": false,
+        "x": 280,
+        "y": 160,
+        "wires": [
+            []
         ]
     }
 ]
