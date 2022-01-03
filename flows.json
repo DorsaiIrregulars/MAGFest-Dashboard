@@ -903,7 +903,7 @@
                 "t": "set",
                 "p": "fileame",
                 "pt": "msg",
-                "to": "freeboard-start-17154,json",
+                "to": "freeboard-start-17154.json",
                 "tot": "str"
             }
         ],
