@@ -1165,9 +1165,9 @@
         "id": "57dd4c4998b12b3b",
         "type": "freeboard",
         "z": "25fcc8c591bf5c97",
-        "name": "DISchedule",
-        "x": 650,
-        "y": 440,
+        "name": "FullSchedule",
+        "x": 570,
+        "y": 280,
         "wires": []
     },
     {
@@ -1181,7 +1181,8 @@
         "wires": [
             [
                 "bdfe4e9e09512596",
-                "57dd4c4998b12b3b"
+                "57dd4c4998b12b3b",
+                "61a858c7240f645c"
             ]
         ]
     },
@@ -1205,6 +1206,54 @@
         "x": 130,
         "y": 360,
         "wires": []
+    },
+    {
+        "id": "15c85986d96f9566",
+        "type": "freeboard",
+        "z": "25fcc8c591bf5c97",
+        "name": "DOSchedule",
+        "x": 580,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "61a858c7240f645c",
+        "type": "change",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "DOSchedule",
+                "pt": "msg",
+                "to": "payload[1]",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            },
+            {
+                "t": "move",
+                "p": "DOSchedule",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 200,
+        "wires": [
+            [
+                "15c85986d96f9566"
+            ]
+        ]
     },
     {
         "id": "53035f704bb7e6be",
