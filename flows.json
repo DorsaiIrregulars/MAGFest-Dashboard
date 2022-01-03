@@ -27,7 +27,7 @@
         "id": "1f0274a4dfdeb367",
         "type": "tab",
         "label": "FS",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
@@ -1214,9 +1214,7 @@
         "x": 280,
         "y": 160,
         "wires": [
-            [
-                "0f7a8e6438a00194"
-            ]
+            []
         ]
     },
     {
@@ -1695,7 +1693,6 @@
         "y": 240,
         "wires": [
             [
-                "956b362d3c90f8d8",
                 "bac1d476a4d0ef55"
             ]
         ]
