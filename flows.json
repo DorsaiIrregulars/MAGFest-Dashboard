@@ -1206,12 +1206,12 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
+        "complete": "timedata",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 550,
-        "y": 440,
+        "x": 580,
+        "y": 340,
         "wires": []
     },
     {
@@ -1245,8 +1245,8 @@
             "b359a766202518ac"
         ],
         "timeout": "30",
-        "x": 570,
-        "y": 320,
+        "x": 560,
+        "y": 280,
         "wires": [
             [
                 "74db4799d4b6dd13"
@@ -1300,13 +1300,30 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 570,
-        "y": 260,
+        "x": 560,
+        "y": 220,
         "wires": [
             [
-                "8fc66a73ab200503"
+                "8fc66a73ab200503",
+                "4d9c0d31f527bbe8"
             ]
         ]
+    },
+    {
+        "id": "4d9c0d31f527bbe8",
+        "type": "debug",
+        "z": "89faa08e6ceba514",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 220,
+        "wires": []
     },
     {
         "id": "2b226e356ce68c6c",
@@ -1322,8 +1339,8 @@
         "type": "freeboard",
         "z": "25fcc8c591bf5c97",
         "name": "FullSchedule",
-        "x": 570,
-        "y": 280,
+        "x": 390,
+        "y": 320,
         "wires": []
     },
     {
@@ -1332,8 +1349,8 @@
         "z": "25fcc8c591bf5c97",
         "name": "",
         "links": [],
-        "x": 125,
-        "y": 220,
+        "x": 35,
+        "y": 200,
         "wires": [
             [
                 "61a858c7240f645c",
@@ -1349,8 +1366,8 @@
         "name": "",
         "mode": "return",
         "links": [],
-        "x": 735,
-        "y": 220,
+        "x": 655,
+        "y": 140,
         "wires": []
     },
     {
@@ -1368,8 +1385,8 @@
         "type": "freeboard",
         "z": "25fcc8c591bf5c97",
         "name": "COSchedule",
-        "x": 580,
-        "y": 200,
+        "x": 390,
+        "y": 260,
         "wires": []
     },
     {
@@ -1403,8 +1420,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
-        "y": 200,
+        "x": 180,
+        "y": 260,
         "wires": [
             [
                 "15c85986d96f9566"
@@ -1423,8 +1440,8 @@
         "septopics": true,
         "property": "payload",
         "topi": "topic",
-        "x": 310,
-        "y": 280,
+        "x": 150,
+        "y": 320,
         "wires": [
             [
                 "57dd4c4998b12b3b"
@@ -1442,7 +1459,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 140,
+        "x": 180,
         "y": 100,
         "wires": [
             [
@@ -1455,14 +1472,14 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "getCurrentShift",
-        "func": "var msg2 = msg\nmsg2.payload = new Object()\nvar todaySig = \"\"\nswitch (msg.timedata.currentDate) {\n    case 6: todaySig = \"_1\"\n        break;\n    case 7: todaySig = \"_2\"\n        break;\n    case 8: todaySig = \"_3\"\n        break;\n    case 9: todaySig = \"_4\"\n        break;\n    default: break;\n}\nvar keytoSearchFor = msg.timedata.linsshiftstart+\":00\"+todaySig\nvar glKeytoSearchFor = msg.timedata.glshiftstart+\":00\" + todaySig\nvar origPayload = msg.payload\nvar newPayload = msg2.payload\nconst keys = Object.keys(msg.payload)\n\nif (origPayload.hasOwnProperty(keytoSearchFor)) {\n    newPayload.Firstname = msg.payload.Firstname\n    newPayload.Lastname = msg.payload.Lastname\n    newPayload.Shiftname = msg.payload[keytoSearchFor]\n    newPayload.searchKey = keytoSearchFor\n} else if (origPayload.hasOwnProperty(glKeytoSearchFor)) {\n    newPayload.Firstname = msg.payload.Firstname\n    newPayload.Lastname = msg.payload.Lastname\n    newPayload.ShiftName = msg.payload[glKeytoSearchFor]\n    newPayload.searchKey = keytoSearchFor\n}\nmsg2.payload = newPayload \nreturn msg2\n",
+        "func": "var msg2 = msg\nmsg2.payload = new Object()\nvar todaySig = \"\"\nswitch (msg.timedata.currentDate) {\n    case 6: todaySig = \"_1\"\n        break;\n    case 7: todaySig = \"_2\"\n        break;\n    case 8: todaySig = \"_3\"\n        break;\n    case 9: todaySig = \"_4\"\n        break;\n    default: break;\n}\nvar keytoSearchFor = msg.timedata.lineshiftstart+\":00\"+todaySig\nvar glKeytoSearchFor = msg.timedata.glshiftstart+\":00\"+todaySig\nvar origPayload = msg.payload\nvar newPayload = msg2.payload\nconst keys = Object.keys(msg.payload)\nnode.warn(\"Line shift \"+keytoSearchFor+\" Key Property is \" + origPayload.hasOwnProperty(keytoSearchFor))\nnode.warn(\"GL shift \" + glKeytoSearchFor+\" Property is \" + origPayload.hasOwnProperty(glKeytoSearchFor))\n\nif (origPayload.hasOwnProperty(keytoSearchFor)) {\n    newPayload.Firstname = msg.payload.Firstname\n    newPayload.Lastname = msg.payload.Lastname\n    newPayload.Shiftname = msg.payload[keytoSearchFor]\n    newPayload.searchKey = keytoSearchFor\n} else if (origPayload.hasOwnProperty(glKeytoSearchFor)) {\n    newPayload.Firstname = msg.payload.Firstname\n    newPayload.Lastname = msg.payload.Lastname\n    newPayload.ShiftName = msg.payload[glKeytoSearchFor]\n    newPayload.searchKey = keytoSearchFor\n}\nmsg2.payload = newPayload \nreturn msg2\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 100,
+        "x": 220,
+        "y": 140,
         "wires": [
             [
                 "5f92a06bbc95fc48"
@@ -1474,8 +1491,8 @@
         "type": "freeboard",
         "z": "25fcc8c591bf5c97",
         "name": "CurrentShift",
-        "x": 670,
-        "y": 400,
+        "x": 590,
+        "y": 200,
         "wires": []
     },
     {
@@ -1489,7 +1506,7 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 290,
+        "x": 330,
         "y": 100,
         "wires": [
             [
@@ -1514,8 +1531,8 @@
         "timeout": "",
         "count": "",
         "reduceRight": false,
-        "x": 590,
-        "y": 100,
+        "x": 370,
+        "y": 140,
         "wires": [
             [
                 "f3e9625672020f0a"
@@ -1526,15 +1543,15 @@
         "id": "f3e9625672020f0a",
         "type": "function",
         "z": "25fcc8c591bf5c97",
-        "name": "",
+        "name": "removeEmptyItems",
         "func": "var msg2 = msg\nmsg2.payload = new Array()\nfor (var i=0; i<msg.payload.length; i++) {\n    if (msg.payload[i].isEmpty() == false) {\n        msg2.payload.push(msg.payload[i])\n    }\n}\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 160,
+        "x": 530,
+        "y": 140,
         "wires": [
             [
                 "bdfe4e9e09512596"
@@ -1553,8 +1570,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 430,
-        "y": 60,
+        "x": 470,
+        "y": 40,
         "wires": []
     },
     {
