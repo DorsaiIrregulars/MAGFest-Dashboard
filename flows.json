@@ -1092,7 +1092,7 @@
         "y": 160,
         "wires": [
             [
-                "8fc66a73ab200503"
+                "bd3747177cdf7f3d"
             ]
         ]
     },
@@ -1153,6 +1153,61 @@
         ]
     },
     {
+        "id": "bd3747177cdf7f3d",
+        "type": "change",
+        "z": "89faa08e6ceba514",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "headers",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "responseUrl",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "statusCode",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "redirectList",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "retry",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "selectedSheetName",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "selectedRange",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 260,
+        "wires": [
+            [
+                "8fc66a73ab200503"
+            ]
+        ]
+    },
+    {
         "id": "2b226e356ce68c6c",
         "type": "subflow:6f90ad3f.f78d24",
         "z": "25fcc8c591bf5c97",
@@ -1193,8 +1248,8 @@
         "name": "",
         "mode": "return",
         "links": [],
-        "x": 315,
-        "y": 80,
+        "x": 735,
+        "y": 20,
         "wires": []
     },
     {
@@ -1286,13 +1341,42 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 220,
-        "y": 140,
+        "x": 340,
+        "y": 100,
         "wires": [
             [
-                "bdfe4e9e09512596"
+                "cdfd86b653707fb3"
             ]
         ]
+    },
+    {
+        "id": "cdfd86b653707fb3",
+        "type": "function",
+        "z": "25fcc8c591bf5c97",
+        "name": "getCurrentShift",
+        "func": "var msg2 = RED.util.cloneMessage(msg);\nvar todaySig = \"\"\nswitch (msg.timedata.currentDate) {\n    case 5: break\n    case 6: todaySig = \"_1\"\n        break\n    case 7: todaySig = \"_2\"\n        break\n    case 6: todaySig = \"_3\"\n        break\n    case 6: todaySig = \"_4\"\n        break\n}\nmsg2.payload=new Array()\nvar keytoSearchFor = new String(msg.timedata.lineshiftstart+\":00\"+todaySig)\nvar glKeytoSearchFor = new String(msg.timedata.glshiftstart + \":00\" + todaySig)\nfor (var i = 2; i < msg.payload.length; i++) {\n    var newArray = new Object(msg.payload[i])\n    var keys = Object.keys(newArray)\n    msg2.timedata.keys = keys\n    for (var key of keys) {\n        var checkKey = new String(key)\n        if (checkKey == keytoSearchFor) {\n            msg2.payload.push([msg.payload[i].Firstname, msg.payload[i].Lastname, msg.payload[1][key], keytoSearchFor ])\n        }\n        else if (checkKey == glKeytoSearchFor) {\n            msg2.payload.push([msg.payload[i].Firstname, msg.payload[i].Lastname, msg.payload[1][key], keytoSearchFor])\n        }\n    }\n    msg2.timedata.key = key\n    msg2.timedata.lastkey = checkKey\n    msg2.timedata.searchKey = keytoSearchFor\n    msg2.timedata.arrayLength = i\n    msg2.timedata.finalArray = newArray\n}\n\nreturn msg2",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 100,
+        "wires": [
+            [
+                "bdfe4e9e09512596",
+                "31a21684bf7c06c5"
+            ]
+        ]
+    },
+    {
+        "id": "31a21684bf7c06c5",
+        "type": "freeboard",
+        "z": "25fcc8c591bf5c97",
+        "name": "CurrentShift",
+        "x": 600,
+        "y": 160,
+        "wires": []
     },
     {
         "id": "53035f704bb7e6be",
