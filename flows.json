@@ -574,8 +574,8 @@
         "z": "3c1975f87cd0cabf",
         "name": "GitHub Token",
         "info": "Set GITHUB_TOKEN in [Heroku Config Vars](https://dashboard.heroku.com/apps/nodered-on-cloud/settings).\nSee [Personal access tokens](https://github.com/settings/tokens) page (repo).",
-        "x": 110,
-        "y": 280,
+        "x": 630,
+        "y": 360,
         "wires": []
     },
     {
@@ -813,14 +813,15 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 110,
+        "x": 90,
         "y": 40,
         "wires": [
             [
                 "f92e1e8dffe158f7",
-                "98b5b9035834b822",
-                "71c40b7254660299",
-                "added0aa3567589e"
+                "810aa88bbb61d7cd",
+                "a853476faaa7392b",
+                "36d1eb1366cf65c2",
+                "4583cf8ee486ff6c"
             ]
         ]
     },
@@ -994,6 +995,106 @@
         "topic": "",
         "x": 320,
         "y": 480,
+        "wires": [
+            [
+                "0f262e77bb5b55ab"
+            ]
+        ]
+    },
+    {
+        "id": "810aa88bbb61d7cd",
+        "type": "delay",
+        "z": "3c1975f87cd0cabf",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 160,
+        "y": 140,
+        "wires": [
+            [
+                "98b5b9035834b822"
+            ]
+        ]
+    },
+    {
+        "id": "a853476faaa7392b",
+        "type": "delay",
+        "z": "3c1975f87cd0cabf",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "71c40b7254660299"
+            ]
+        ]
+    },
+    {
+        "id": "36d1eb1366cf65c2",
+        "type": "delay",
+        "z": "3c1975f87cd0cabf",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 140,
+        "y": 340,
+        "wires": [
+            [
+                "added0aa3567589e"
+            ]
+        ]
+    },
+    {
+        "id": "4583cf8ee486ff6c",
+        "type": "delay",
+        "z": "3c1975f87cd0cabf",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "4",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 140,
+        "y": 420,
         "wires": [
             [
                 "0f262e77bb5b55ab"
