@@ -266,7 +266,7 @@ var settings = module.exports = {
      */
     //httpStatic: '/home/nol/node-red-static/',
     // Serve up the welcome page
-    // httpStatic: path.join(__dirname, "public"),
+    httpStatic: path.join(__dirname, "public"),
 
     /*******************************************************************************
      * Runtime Settings
