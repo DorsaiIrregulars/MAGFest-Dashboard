@@ -1340,7 +1340,7 @@
         "z": "25fcc8c591bf5c97",
         "name": "FullSchedule",
         "x": 390,
-        "y": 320,
+        "y": 160,
         "wires": []
     },
     {
@@ -1350,12 +1350,12 @@
         "name": "",
         "links": [],
         "x": 35,
-        "y": 200,
+        "y": 160,
         "wires": [
             [
                 "61a858c7240f645c",
                 "4facf64438b80c1b",
-                "d6794e27d0340101"
+                "53983857cf641e87"
             ]
         ]
     },
@@ -1366,8 +1366,8 @@
         "name": "",
         "mode": "return",
         "links": [],
-        "x": 655,
-        "y": 140,
+        "x": 715,
+        "y": 260,
         "wires": []
     },
     {
@@ -1376,8 +1376,8 @@
         "z": "25fcc8c591bf5c97",
         "name": "How to Freeboard",
         "info": "By default, most Heroku node-red \ninstallations use `/web` as a prefix for \nthings like the Dashboard and other http \nservices. \n\nFreeboard hates that. If you are using the \nfreeboard flows (and I also recommend the \npatched `ksonney/node-red-contrib-freeboard' \nplugin instead of the default from the \npalate), you should ABSOLUTELY change that \nto `/app` in settings.js and the Procfile,\nwhich is the default for this repo.",
-        "x": 130,
-        "y": 360,
+        "x": 310,
+        "y": 40,
         "wires": []
     },
     {
@@ -1386,7 +1386,7 @@
         "z": "25fcc8c591bf5c97",
         "name": "COSchedule",
         "x": 390,
-        "y": 260,
+        "y": 100,
         "wires": []
     },
     {
@@ -1421,7 +1421,7 @@
         "to": "",
         "reg": false,
         "x": 180,
-        "y": 260,
+        "y": 100,
         "wires": [
             [
                 "15c85986d96f9566"
@@ -1441,7 +1441,7 @@
         "property": "payload",
         "topi": "topic",
         "x": 150,
-        "y": 320,
+        "y": 160,
         "wires": [
             [
                 "57dd4c4998b12b3b"
@@ -1453,17 +1453,17 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "SetupTimeVars",
-        "func": "var msg2 = msg\nmsg2.timedata = new Object\nvar currentTime = new Date(Date.now())\nvar tzofffset = -5\nvar offset = (currentTime.getTimezoneOffset() + (tzofffset * 60)) * 60 * 1000;\ncurrentTime.setTime(currentTime.getTime() + offset);\n\nmsg2.timedata.currentDate = currentTime.getDate()\nmsg2.timedata.currentHour = currentTime.getHours()\nvar currentLineShift = currentTime.getHours()\nif (currentTime.getHours() % 3 != 0) {\n    currentLineShift = currentTime.getHours() - (currentTime.getHours() % 3)\n}\nvar currentGLShift = currentTime.getHours()\nif (currentTime.getHours() % 4 != 0) {\n    currentGLShift = currentTime.getHours() - (currentTime.getHours() % 4)\n}\nmsg2.timedata.glshiftstart = currentGLShift\nmsg2.timedata.lineshiftstart = currentLineShift\nmsg2.timedata.tzoffset = currentTime.getTimezoneOffset()\nreturn msg2;",
+        "func": "var msg2 = msg\nmsg2.timedata = new Object\nvar currentTime = new Date(Date.now())\nvar tzofffset = -5\nvar offset = (currentTime.getTimezoneOffset() + (tzofffset * 60)) * 60 * 1000;\ncurrentTime.setTime(currentTime.getTime() + offset);\n\nmsg2.timedata.currentDate = currentTime.getDate()\nmsg2.timedata.currentHour = currentTime.getHours()\nvar currentLineShift = currentTime.getHours()\nif (currentTime.getHours() % 4 != 0) {\n    currentLineShift = currentTime.getHours() - (currentTime.getHours() % 3)\n}\nvar currentGLShift = currentTime.getHours()\nif (currentTime.getHours() % 3 != 0) {\n    currentGLShift = currentTime.getHours() - (currentTime.getHours() % 4)\n}\nmsg2.timedata.glshiftstart = currentGLShift\nmsg2.timedata.lineshiftstart = currentLineShift\nmsg2.timedata.tzoffset = currentTime.getTimezoneOffset()\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 180,
-        "y": 100,
+        "x": 440,
+        "y": 200,
         "wires": [
             [
-                "c6e45f56a52a6bcb"
+                "c3e1e9eb11e4db4a"
             ]
         ]
     },
@@ -1472,14 +1472,14 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "getCurrentShift",
-        "func": "var msg2 = msg\nvar is_pm = false\nmsg2.payload = new Object()\nif (msg.timedata.lineshiftstart >= 12) {\n    is_pm = true\n}\nvar origPayload = msg.payload\nvar newPayload = msg2.payload\n\nif (is_pm) {\n    newPayload.Firstname = msg.payload.Firstname\n    newPayload.Lastname = msg.payload.Lastname\n    switch (msg.timedata.currentDate) {\n        case 5:\n            newPayload.Shiftname = msg.payload[keytoSearchFor]\n    }\n    newPayload.Shiftname = msg.payload[keytoSearchFor]\n    newPayload.searchKey = keytoSearchFor\n} else if (origPayload.hasOwnProperty(glKeytoSearchFor)) {\n    newPayload.Firstname = msg.payload.Firstname\n    newPayload.Lastname = msg.payload.Lastname\n    newPayload.ShiftName = msg.payload[glKeytoSearchFor]\n    newPayload.searchKey = keytoSearchFor\n}\nmsg2.payload = newPayload\nreturn msg2\n",
+        "func": "var msg2 = msg\nvar is_pm = false\nif (msg.timedata.lineshiftstart >= 12) {\n    is_pm = true\n}\nvar origPayload = msg.payload\nvar newPayload = new Object()\nvar shiftname = \"\"\n\nnewPayload.Firstname = msg.payload.Firstname\nnewPayload.Lastname = msg.payload.Lastname\nswitch (msg.timedata.currentDate) {\n    case 6:\n        switch (msg.timedata.linshiftstart) {\n            case 0:\n                newPayload.Shiftname = msg.payload._0_00_1\n                break\n            case 4:\n                newPayload.Shiftname = msg.payload._4_00_1\n                break\n            case 12:\n                newPayload.Shiftname = msg.payload._12_00_1\n                break\n            case 16:\n                newPayload.Shiftname = msg.payload._16_00_1\n                break\n            case 20:\n                newPayload.Shiftname = msg.payload._20_00_1\n                break\n            }\n            break\n    case 7:\n            newPayload.Shiftname = msg.payload._12_00_2\n            newPayload.Shiftname = msg.payload._16_00_2\n            newPayload.Shiftname = msg.payload._20_00_2\n            break\n    case 8:\n            newPayload.Shiftname = msg.payload._12_00_3\n            newPayload.Shiftname = msg.payload._16_00_3\n            newPayload.Shiftname = msg.payload._20_00_3\n            break\n    case 9:\n            newPayload.Shiftname = msg.payload._12_00_4\n            newPayload.Shiftname = msg.payload._16_00_4\n            newPayload.Shiftname = msg.payload._20_00_4\n            break\n    default:\n        switch (msg.timedata.linshiftstart) {\n            case 0:\n                newPayload.Shiftname = msg.payload._0_00\n                break\n            case 4:\n                newPayload.Shiftname = msg.payload._4_00\n                break\n            case 12:\n                newPayload.Shiftname = msg.payload._12_00\n                break\n            case 16:\n                newPayload.Shiftname = msg.payload._16_00\n                break\n            case 20:\n                newPayload.Shiftname = msg.payload._20_00\n                break\n            default:\n                newPayload.Shiftname = \"\"\n                break\n        }\n    break\n}\n\nnode.warn(newPayload)\nmsg2.payload = newPayload\nreturn msg2\n",
         "outputs": 1,
-        "noerr": 6,
+        "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 220,
-        "y": 140,
+        "x": 320,
+        "y": 260,
         "wires": [
             [
                 "5f92a06bbc95fc48"
@@ -1491,8 +1491,8 @@
         "type": "freeboard",
         "z": "25fcc8c591bf5c97",
         "name": "CurrentShift",
-        "x": 590,
-        "y": 200,
+        "x": 650,
+        "y": 360,
         "wires": []
     },
     {
@@ -1506,12 +1506,11 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 330,
-        "y": 100,
+        "x": 150,
+        "y": 260,
         "wires": [
             [
-                "cdfd86b653707fb3",
-                "f9b178af206cd196"
+                "cdfd86b653707fb3"
             ]
         ]
     },
@@ -1531,11 +1530,12 @@
         "timeout": "",
         "count": "",
         "reduceRight": false,
-        "x": 370,
-        "y": 140,
+        "x": 610,
+        "y": 260,
         "wires": [
             [
-                "f3e9625672020f0a"
+                "bdfe4e9e09512596",
+                "f9b178af206cd196"
             ]
         ]
     },
@@ -1544,18 +1544,16 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "removeEmptyItems",
-        "func": "var msg2 = msg\nmsg2.payload = new Array()\nfor (var i=0; i<msg.payload.length; i++) {\n    if (msg.payload[i].isEmpty() == false) {\n        msg2.payload.push(msg.payload[i])\n    }\n}\nreturn msg2;",
+        "func": "var msg2 = msg\nmsg2.payload = new Array()\nfor (var i=0; i<msg.payload.length; i++) {\n    var newMsg = msg.payload[i]\n    if (Array.isEmpty(newMsg.ShiftName) == false) {\n        msg2.payload.push(newMsg)\n    }\n}\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
-        "y": 140,
+        "x": 490,
+        "y": 500,
         "wires": [
-            [
-                "bdfe4e9e09512596"
-            ]
+            []
         ]
     },
     {
@@ -1563,16 +1561,172 @@
         "type": "debug",
         "z": "25fcc8c591bf5c97",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 470,
-        "y": 40,
+        "x": 250,
+        "y": 460,
         "wires": []
+    },
+    {
+        "id": "53983857cf641e87",
+        "type": "json",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "66eeb7c6e0de5a7a"
+            ]
+        ]
+    },
+    {
+        "id": "66eeb7c6e0de5a7a",
+        "type": "string",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "methods": [
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": ":00"
+                    },
+                    {
+                        "type": "str",
+                        "value": "_00"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"1"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_1"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"2"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_2"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"3"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_3"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"4"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_4"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"6"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_6"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"9"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_9"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"0"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_0"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 270,
+        "y": 200,
+        "wires": [
+            [
+                "d6794e27d0340101"
+            ]
+        ]
+    },
+    {
+        "id": "c3e1e9eb11e4db4a",
+        "type": "json",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 590,
+        "y": 200,
+        "wires": [
+            [
+                "c6e45f56a52a6bcb"
+            ]
+        ]
     },
     {
         "id": "53035f704bb7e6be",
