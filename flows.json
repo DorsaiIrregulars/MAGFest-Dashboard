@@ -1206,11 +1206,11 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 570,
+        "x": 550,
         "y": 340,
         "wires": []
     },
@@ -1366,8 +1366,8 @@
         "name": "",
         "mode": "return",
         "links": [],
-        "x": 655,
-        "y": 320,
+        "x": 315,
+        "y": 420,
         "wires": []
     },
     {
@@ -1453,7 +1453,7 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "SetupTimeVars",
-        "func": "var msg2 = msg\nmsg2.timedata = new Object\nvar currentTime = new Date(Date.now())\nvar tzofffset = -5\nvar offset = (currentTime.getTimezoneOffset() + (tzofffset * 60)) * 60 * 1000;\ncurrentTime.setTime(currentTime.getTime() + offset);\n\nmsg2.timedata.currentDate = currentTime.getDate()\nmsg2.timedata.currentHour = currentTime.getHours()\nvar currentLineShift = currentTime.getHours()\nif (currentTime.getHours() % 4 != 0) {\n    currentLineShift = currentTime.getHours() - (currentTime.getHours() % 3)\n}\nvar currentGLShift = currentTime.getHours()\nif (currentTime.getHours() % 3 != 0) {\n    currentGLShift = currentTime.getHours() - (currentTime.getHours() % 4)\n}\nmsg2.timedata.glshiftstart = currentGLShift\nmsg2.timedata.lineshiftstart = currentLineShift\nmsg2.timedata.tzoffset = currentTime.getTimezoneOffset()\nreturn msg2;",
+        "func": "var msg2 = msg\nmsg2.timedata = new Object\nvar currentTime = new Date(Date.now())\nvar tzofffset = -5\nvar offset = (currentTime.getTimezoneOffset() + (tzofffset * 60)) * 60 * 1000;\ncurrentTime.setTime(currentTime.getTime() + offset);\n\nmsg2.timedata.currentDate = currentTime.getDate()\nmsg2.timedata.currentHour = currentTime.getHours()\nvar currentLineShift = currentTime.getHours()\nif (currentTime.getHours() % 4 != 0) {\n    currentLineShift = currentTime.getHours() - (currentTime.getHours() % 4)\n}\nvar currentGLShift = currentTime.getHours()\nif (currentTime.getHours() % 3 != 0) {\n    currentGLShift = currentTime.getHours() - (currentTime.getHours() % 3)\n}\nmsg2.timedata.currentDate = 7\nmsg2.timedata.glshiftstart = currentGLShift\nmsg2.timedata.lineshiftstart = currentLineShift\nmsg2.timedata.tzoffset = currentTime.getTimezoneOffset()\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1472,7 +1472,7 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "getCurrentShift",
-        "func": "var msg2 = msg\nvar is_pm = false\nif (msg.timedata.lineshiftstart >= 12) {\n    is_pm = true\n}\nvar origPayload = msg.payload\nvar newPayload = new Object()\nvar shiftname = \"\"\n\nnewPayload.Firstname = msg.payload.Firstname\nnewPayload.Lastname = msg.payload.Lastname\nif (msg.timedata.currentDate == 6) {\n    if (msg.timedata.lineshiftstart == 0 || msg.timedata.glshiftstart == 0) {\n        shiftname = msg.payload._0_00_1\n    } else if (msg.timedata.lineshiftstart == 3 || msg.timedata.glshiftstart == 3) {\n        shiftname = msg.payload._3_00_1\n    } else if (msg.timedata.lineshiftstart == 4 || msg.timedata.glshiftstart == 4) {\n        shiftname = msg.payload._4_00_1\n    } else if (msg.timedata.lineshiftstart == 6 || msg.timedata.glshiftstart == 6) {\n        shiftname = msg.payload._6_00_1\n    } else if (msg.timedata.lineshiftstart == 8 || msg.timedata.glshiftstart == 8) {\n        shiftname = msg.payload._8_00_1\n    } else if (msg.timedata.lineshiftstart == 9 || msg.timedata.glshiftstart == 9) {\n        shiftname = msg.payload._9_00_1\n    } else if (msg.timedata.lineshiftstart == 12 || msg.timedata.glshiftstart == 12) {\n        shiftname = msg.payload._12_00_1\n    } else if (msg.timedata.lineshiftstart == 15 || msg.timedata.glshiftstart == 15) {\n        shiftname = msg.payload._15_00_1\n    } else if (msg.timedata.lineshiftstart == 16 || msg.timedata.glshiftstart == 16) {\n        shiftname = msg.payload._16_00_1\n    } else if (msg.timedata.lineshiftstart == 18 || msg.timedata.glshiftstart == 18) {\n        shiftname = msg.payload._18_00_1\n    } else if (msg.timedata.lineshiftstart == 20 || msg.timedata.glshiftstart == 20) {\n        shiftname = msg.payload._20_00_1\n    } else if (msg.timedata.lineshiftstart == 21 || msg.timedata.glshiftstart == 21) {\n        shiftname = msg.payload._21_00_1\n    } else {\n        shiftname = undefined\n    }\n} else if (msg.timedata.currentDate == 7) {\n    if (msg.timedata.lineshiftstart == 0 || msg.timedata.glshiftstart == 0) {\n        shiftname = msg.payload._0_00_2\n    } else if (msg.timedata.lineshiftstart == 3 || msg.timedata.glshiftstart == 3) {\n        shiftname = msg.payload._3_00_2\n    } else if (msg.timedata.lineshiftstart == 4 || msg.timedata.glshiftstart == 4) {\n        shiftname = msg.payload._4_00_2\n    } else if (msg.timedata.lineshiftstart == 6 || msg.timedata.glshiftstart == 6) {\n        shiftname = msg.payload._6_00_2\n    } else if (msg.timedata.lineshiftstart == 8 || msg.timedata.glshiftstart == 8) {\n        shiftname = msg.payload._8_00_2\n    } else if (msg.timedata.lineshiftstart == 9 || msg.timedata.glshiftstart == 9) {\n        shiftname = msg.payload._9_00_2\n    } else if (msg.timedata.lineshiftstart == 12 || msg.timedata.glshiftstart == 12) {\n        shiftname = msg.payload._12_00_2\n    } else if (msg.timedata.lineshiftstart == 15 || msg.timedata.glshiftstart == 15) {\n        shiftname = msg.payload._15_00_2\n    } else if (msg.timedata.lineshiftstart == 16 || msg.timedata.glshiftstart == 16) {\n        shiftname = msg.payload._16_00_2\n    } else if (msg.timedata.lineshiftstart == 18 || msg.timedata.glshiftstart == 18) {\n        shiftname = msg.payload._18_00_2\n    } else if (msg.timedata.lineshiftstart == 20 || msg.timedata.glshiftstart == 20) {\n        shiftname = msg.payload._20_00_2\n    } else if (msg.timedata.lineshiftstart == 21 || msg.timedata.glshiftstart == 21) {\n        shiftname = msg.payload._21_00_2\n    } else {\n        shiftname = undefined\n    }\n} else if (msg.timedata.currentDate == 8) {\n    if (msg.timedata.lineshiftstart == 0 || msg.timedata.glshiftstart == 0) {\n        shiftname = msg.payload._0_00_3\n    } else if (msg.timedata.lineshiftstart == 3 || msg.timedata.glshiftstart == 3) {\n        shiftname = msg.payload._3_00_3\n    } else if (msg.timedata.lineshiftstart == 4 || msg.timedata.glshiftstart == 4) {\n        shiftname = msg.payload._4_00_3\n    } else if (msg.timedata.lineshiftstart == 6 || msg.timedata.glshiftstart == 6) {\n        shiftname = msg.payload._6_00_3\n    } else if (msg.timedata.lineshiftstart == 8 || msg.timedata.glshiftstart == 8) {\n        shiftname = msg.payload._8_00_3\n    } else if (msg.timedata.lineshiftstart == 9 || msg.timedata.glshiftstart == 9) {\n        shiftname = msg.payload._9_00_3\n    } else if (msg.timedata.lineshiftstart == 12 || msg.timedata.glshiftstart == 12) {\n        shiftname = msg.payload._12_00_3\n    } else if (msg.timedata.lineshiftstart == 15 || msg.timedata.glshiftstart == 15) {\n        shiftname = msg.payload._15_00_3\n    } else if (msg.timedata.lineshiftstart == 16 || msg.timedata.glshiftstart == 16) {\n        shiftname = msg.payload._16_00_3\n    } else if (msg.timedata.lineshiftstart == 18 || msg.timedata.glshiftstart == 18) {\n        shiftname = msg.payload._18_00_3\n    } else if (msg.timedata.lineshiftstart == 20 || msg.timedata.glshiftstart == 20) {\n        shiftname = msg.payload._20_00_3\n    } else if (msg.timedata.lineshiftstart == 21 || msg.timedata.glshiftstart == 21) {\n        shiftname = msg.payload._21_00_3\n    } else {\n        shiftname = undefined\n    }\n} else if (msg.timedata.currentDate == 9) {\n    if (msg.timedata.lineshiftstart == 0 || msg.timedata.glshiftstart == 0) {\n        shiftname = msg.payload._0_00_4\n    } else if (msg.timedata.lineshiftstart == 3 || msg.timedata.glshiftstart == 3) {\n        shiftname = msg.payload._3_00_4\n    } else if (msg.timedata.lineshiftstart == 4 || msg.timedata.glshiftstart == 4) {\n        shiftname = msg.payload._4_00_4\n    } else if (msg.timedata.lineshiftstart == 6 || msg.timedata.glshiftstart == 6) {\n        shiftname = msg.payload._6_00_4\n    } else if (msg.timedata.lineshiftstart == 8 || msg.timedata.glshiftstart == 8) {\n        shiftname = msg.payload._8_00_4\n    } else if (msg.timedata.lineshiftstart == 9 || msg.timedata.glshiftstart == 9) {\n        shiftname = msg.payload._9_00_4\n    } else if (msg.timedata.lineshiftstart == 12 || msg.timedata.glshiftstart == 12) {\n        shiftname = msg.payload._12_00_4\n    } else if (msg.timedata.lineshiftstart == 15 || msg.timedata.glshiftstart == 15) {\n        shiftname = msg.payload._15_00_4\n    } else if (msg.timedata.lineshiftstart == 16 || msg.timedata.glshiftstart == 16) {\n        shiftname = msg.payload._16_00_4\n    } else if (msg.timedata.lineshiftstart == 18 || msg.timedata.glshiftstart == 18) {\n        shiftname = msg.payload._18_00_4\n    } else if (msg.timedata.lineshiftstart == 20 || msg.timedata.glshiftstart == 20) {\n        shiftname = msg.payload._20_00_4\n    } else if (msg.timedata.lineshiftstart == 21 || msg.timedata.glshiftstart == 21) {\n        shiftname = msg.payload._21_00_4\n    } else {\n        shiftname = undefined\n    }\n} else {\n    if (msg.timedata.lineshiftstart == 0 || msg.timedata.glshiftstart == 0) {\n        shiftname = msg.payload._0_00\n    } else if (msg.timedata.lineshiftstart == 3 || msg.timedata.glshiftstart == 3) {\n        shiftname = msg.payload._3_00\n    } else if (msg.timedata.lineshiftstart == 4 || msg.timedata.glshiftstart == 4) {\n        shiftname = msg.payload._4_00\n    } else if (msg.timedata.lineshiftstart == 6 || msg.timedata.glshiftstart == 6) {\n        shiftname = msg.payload._6_00\n    } else if (msg.timedata.lineshiftstart == 8 || msg.timedata.glshiftstart == 8) {\n        shiftname = msg.payload._8_00\n    } else if (msg.timedata.lineshiftstart == 9 || msg.timedata.glshiftstart == 9) {\n        shiftname = msg.payload._9_00\n    } else if (msg.timedata.lineshiftstart == 12 || msg.timedata.glshiftstart == 12) {\n        shiftname = msg.payload._12_00\n    } else if (msg.timedata.lineshiftstart == 15 || msg.timedata.glshiftstart == 15) {\n        shiftname = msg.payload._15_00\n    } else if (msg.timedata.lineshiftstart == 16 || msg.timedata.glshiftstart == 16) {\n        shiftname = msg.payload._16_00\n    } else if (msg.timedata.lineshiftstart == 18 || msg.timedata.glshiftstart == 18) {\n        shiftname = msg.payload._18_00\n    } else if (msg.timedata.lineshiftstart == 20 || msg.timedata.glshiftstart == 20) {\n        shiftname = msg.payload._20_00\n    } else if (msg.timedata.lineshiftstart == 21 || msg.timedata.glshiftstart == 21) {\n        shiftname = msg.payload._21_00\n    } else {\n        shiftname = undefined\n    }\n}\nif (shiftname == \" \") { shiftname = undefined }\nif (shiftname != undefined) {\n    newPayload.ShiftName = shiftname\n}\nmsg2.payload = newPayload\nreturn msg2\n",
+        "func": "var msg2 = msg\nvar is_pm = false\nif (msg.timedata.lineshiftstart >= 12) {\n    is_pm = true\n}\nvar origPayload = msg.payload\nvar newPayload = new Object()\nvar shiftname = \"\"\n\nnewPayload.Firstname = msg.payload.Firstname\nnewPayload.Lastname = msg.payload.Lastname\n\nif (msg.timedata.currentDate == 6) {\n    if (msg.timedata.lineshiftstart == 0) {\n        shiftname = msg.payload._0_00_1\n    } else if (msg.timedata.lineshiftstart == 4) {\n        shiftname = msg.payload._4_00_1\n    } else if (msg.timedata.lineshiftstart == 8) {\n        shiftname = msg.payload._8_00_1\n    } else if (msg.timedata.lineshiftstart == 12) {\n        shiftname = msg.payload._12_00_1\n    } else if (msg.timedata.lineshiftstart == 16) {\n        shiftname = msg.payload._16_00_1\n    } else if (msg.timedata.lineshiftstart == 20) {\n        shiftname = msg.payload._20_00_1\n    } else {\n        shiftname = undefined\n    }\n    if (shiftname == undefined) {\n        if (msg.timedata.glshiftstart == 3) {\n            shiftname = msg.payload._3_00_1\n        } else if (msg.timedata.glshiftstart == 6) {\n            shiftname = msg.payload._6_00_1\n        } else if (msg.timedata.glshiftstart == 9) {\n            shiftname = msg.payload._9_00_1\n        } else if (msg.timedata.glshiftstart == 15) {\n            shiftname = msg.payload._15_00_1\n        } else if (msg.timedata.glshiftstart == 18) {\n            shiftname = msg.payload._18_00_1\n        } else if (msg.timedata.glshiftstart == 21) {\n            shiftname = msg.payload._21_00_1\n        }\n    }\n} else if (msg.timedata.currentDate == 7) {\n    if (msg.timedata.lineshiftstart == 0) {\n        shiftname = msg.payload._0_00_2\n    } else if (msg.timedata.lineshiftstart == 4) {\n        shiftname = msg.payload._4_00_2\n    } else if (msg.timedata.lineshiftstart == 8) {\n        shiftname = msg.payload._8_00_2\n    } else if (msg.timedata.lineshiftstart == 12) {\n        shiftname = msg.payload._12_00_2\n    } else if (msg.timedata.lineshiftstart == 16) {\n        shiftname = msg.payload._16_00_2\n    } else if (msg.timedata.lineshiftstart == 20) {\n        shiftname = msg.payload._20_00_2\n    } else {\n        shiftname = undefined\n    }\n    if (shiftname == undefined) {\n        if (msg.timedata.glshiftstart == 3) {\n            shiftname = msg.payload._3_00_2\n        } else if (msg.timedata.glshiftstart == 6) {\n            shiftname = msg.payload._6_00_2\n        } else if (msg.timedata.glshiftstart == 9) {\n            shiftname = msg.payload._9_00_2\n        } else if (msg.timedata.glshiftstart == 15) {\n            shiftname = msg.payload._15_00_2\n        } else if (msg.timedata.glshiftstart == 18) {\n            shiftname = msg.payload._18_00_2\n        } else if (msg.timedata.glshiftstart == 21) {\n            shiftname = msg.payload._21_00_2\n        }\n    }\n} else if (msg.timedata.currentDate == 8) {\n    if (msg.timedata.lineshiftstart == 0) {\n        shiftname = msg.payload._0_00_3\n    } else if (msg.timedata.lineshiftstart == 4) {\n        shiftname = msg.payload._4_00_3\n    } else if (msg.timedata.lineshiftstart == 8) {\n        shiftname = msg.payload._8_00_3\n    } else if (msg.timedata.lineshiftstart == 12) {\n        shiftname = msg.payload._12_00_3\n    } else if (msg.timedata.lineshiftstart == 16) {\n        shiftname = msg.payload._16_00_3\n    } else if (msg.timedata.lineshiftstart == 20) {\n        shiftname = msg.payload._20_00_3\n    } else {\n        shiftname = undefined\n    }\n    if (shiftname == undefined) {\n        if (msg.timedata.glshiftstart == 3) {\n            shiftname = msg.payload._3_00_3\n        } else if (msg.timedata.glshiftstart == 6) {\n            shiftname = msg.payload._6_00_3\n        } else if (msg.timedata.glshiftstart == 9) {\n            shiftname = msg.payload._9_00_3\n        } else if (msg.timedata.glshiftstart == 15) {\n            shiftname = msg.payload._15_00_3\n        } else if (msg.timedata.glshiftstart == 18) {\n            shiftname = msg.payload._18_00_3\n        } else if (msg.timedata.glshiftstart == 21) {\n            shiftname = msg.payload._21_00_3\n        }\n    }\n} else if (msg.timedata.currentDate == 9) {\n    if (msg.timedata.lineshiftstart == 0) {\n        shiftname = msg.payload._0_00_4\n    } else if (msg.timedata.lineshiftstart == 4) {\n        shiftname = msg.payload._4_00_4\n    } else if (msg.timedata.lineshiftstart == 8) {\n        shiftname = msg.payload._8_00_4\n    } else if (msg.timedata.lineshiftstart == 12) {\n        shiftname = msg.payload._12_00_4\n    } else if (msg.timedata.lineshiftstart == 16) {\n        shiftname = msg.payload._16_00_4\n    } else if (msg.timedata.lineshiftstart == 20) {\n        shiftname = msg.payload._20_00_4\n    } else {\n        shiftname = undefined\n    }\n    if (shiftname == undefined) {\n        if (msg.timedata.glshiftstart == 3) {\n            shiftname = msg.payload._3_00_4\n        } else if (msg.timedata.glshiftstart == 6) {\n            shiftname = msg.payload._6_00_4\n        } else if (msg.timedata.glshiftstart == 9) {\n            shiftname = msg.payload._9_00_4\n        } else if (msg.timedata.glshiftstart == 15) {\n            shiftname = msg.payload._15_00_4\n        } else if (msg.timedata.glshiftstart == 18) {\n            shiftname = msg.payload._18_00_4\n        } else if (msg.timedata.glshiftstart == 21) {\n            shiftname = msg.payload._21_00_4\n        }\n    }\n} else {\n    if (msg.timedata.lineshiftstart == 0) {\n        shiftname = msg.payload._0_00\n    } else if (msg.timedata.lineshiftstart == 4) {\n        shiftname = msg.payload._4_00\n    } else if (msg.timedata.lineshiftstart == 8) {\n        shiftname = msg.payload._8_00\n    } else if (msg.timedata.lineshiftstart == 12) {\n        shiftname = msg.payload._12_00\n    } else if (msg.timedata.lineshiftstart == 16) {\n        shiftname = msg.payload._16_00\n    } else if (msg.timedata.lineshiftstart == 20) {\n        shiftname = msg.payload._20_00\n    } else {\n        shiftname = undefined\n    }\n    if (shiftname == undefined) {\n        if (msg.timedata.glshiftstart == 3) {\n            shiftname = msg.payload._3_00\n        } else if (msg.timedata.glshiftstart == 6) {\n            shiftname = msg.payload._6_00\n        } else if (msg.timedata.glshiftstart == 9) {\n            shiftname = msg.payload._9_00\n        } else if (msg.timedata.glshiftstart == 15) {\n            shiftname = msg.payload._15_00\n        } else if (msg.timedata.glshiftstart == 18) {\n            shiftname = msg.payload._18_00\n        } else if (msg.timedata.glshiftstart == 21) {\n            shiftname = msg.payload._21_00\n        }\n    }\n}\nif (shiftname == \" \") { shiftname = undefined }\nif (shiftname != undefined) {\n    newPayload.ShiftName = shiftname\n}\nmsg2.payload = newPayload\nreturn msg2\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1491,8 +1491,8 @@
         "type": "freeboard",
         "z": "25fcc8c591bf5c97",
         "name": "CurrentShift",
-        "x": 650,
-        "y": 360,
+        "x": 410,
+        "y": 320,
         "wires": []
     },
     {
@@ -1534,7 +1534,8 @@
         "y": 260,
         "wires": [
             [
-                "f3e9625672020f0a"
+                "f3e9625672020f0a",
+                "193af0ee148c96ef"
             ]
         ]
     },
@@ -1553,27 +1554,10 @@
         "y": 320,
         "wires": [
             [
-                "f9b178af206cd196",
-                "bdfe4e9e09512596"
+                "bdfe4e9e09512596",
+                "31a21684bf7c06c5"
             ]
         ]
-    },
-    {
-        "id": "f9b178af206cd196",
-        "type": "debug",
-        "z": "25fcc8c591bf5c97",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 250,
-        "y": 460,
-        "wires": []
     },
     {
         "id": "53983857cf641e87",
@@ -1729,6 +1713,23 @@
                 "c6e45f56a52a6bcb"
             ]
         ]
+    },
+    {
+        "id": "193af0ee148c96ef",
+        "type": "debug",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 260,
+        "wires": []
     },
     {
         "id": "53035f704bb7e6be",
