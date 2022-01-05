@@ -1532,7 +1532,7 @@
         "type": "debug",
         "z": "89faa08e6ceba514",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1878,7 +1878,9 @@
         "x": 570,
         "y": 60,
         "wires": [
-            []
+            [
+                "8d760cabbc97b624"
+            ]
         ]
     },
     {
@@ -1929,7 +1931,7 @@
         "type": "function",
         "z": "e0d673d05b136ba1",
         "name": "",
-        "func": "var msg2 = msg\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\n\nfor (var i=0; i<msg.fullsched.length; i++) {\n    if (msg.fullsched[i].Firstname != undefined) {\n        optTitle = msg.fullsched[i].Firstname+\" \"+msg.fullsched[i].Lastname\n        msg2.options.push(optTitle)\n    }\n}\n\nreturn msg2;",
+        "func": "var msg2 = msg\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\n\nfor (var i=0; i<msg.fullsched.length; i++) {\n    if (msg.fullsched[i].Firstname != undefined) {\n        optTitle = msg.fullsched[i].Firstname+\" \"+msg.fullsched[i].Lastname\n        newOpt[optTitle] = i\n        msg2.options.push(newOpt)\n        var newOpt = new Object()\n    }\n}\nflow.set(\"fullsched\",msg.fullsched)\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1942,6 +1944,79 @@
                 "de9052122283d962"
             ]
         ]
+    },
+    {
+        "id": "af04ab5f52785715",
+        "type": "debug",
+        "z": "e0d673d05b136ba1",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "8d760cabbc97b624",
+        "type": "function",
+        "z": "e0d673d05b136ba1",
+        "name": "getAllShiftsforUser",
+        "func": "var msg2 = msg\nvar newPayload = new Array()\nvar shiftname = \"\"\nvar shifttime = \"\"\nvar i = msg.payload\nmsg.fullsched = flow.get(\"fullsched\")\nvar schedObj = msg.fullsched[i]\n\nif (schedObj._0_00_1) {\n    shiftname = schedObj._0_00_1\n    shifttime = \"Thursday 00:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._4_00_1) {\n    shiftname = schedObj._4_00_1\n    shifttime = \"Thursday 04:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._8_00_1) {\n    shiftname = schedObj._8_00_1\n    shifttime = \"Thursday 08:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._12_00_1) {\n    shiftname = schedObj._12_00_1\n    shifttime = \"Thursday 12:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._16_00_1) {\n    shiftname = schedObj._16_00_1\n    shifttime = \"Thursday 16:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._20_00_1) {\n    shiftname = schedObj._20_00_1\n    shifttime = \"Thursday 20:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._3_00_1) {\n    shiftname = schedObj._3_00_1\n    shifttime = \"Thursday 03:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._6_00_1) {\n    shiftname = schedObj._6_00_1\n    shifttime = \"Thursday 06:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._9_00_1) {\n    shiftname = schedObj._9_00_1\n    shifttime = \"Thursday 09:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._15_00_1) {\n    shiftname = schedObj._15_00_1\n    shifttime = \"Thursday 15:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._18_00_1) {\n    shiftname = schedObj._18_00_1\n    shifttime = \"Thursday 18:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._21_00_1) {\n    shiftname = schedObj._21_00_1\n    shifttime = \"Thursday 21:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._0_00_2) {\n    shiftname = schedObj._0_00_2\n    shifttime = \"Friday 00:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._4_00_2) {\n    shiftname = schedObj._4_00_2\n    shifttime = \"Friday 04:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._8_00_2) {\n    shiftname = schedObj._8_00_2\n    shifttime = \"Friday 08:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._12_00_2) {\n    shiftname = schedObj._12_00_2\n    shifttime = \"Friday 12:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._16_00_2) {\n    shiftname = schedObj._16_00_2\n    shifttime = \"Friday 16:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._20_00_2) {\n    shiftname = schedObj._20_00_2\n    shifttime = \"Friday 20:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._3_00_2) {\n    shiftname = schedObj._3_00_2\n    shifttime = \"Friday 03:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._6_00_2) {\n    shiftname = schedObj._6_00_2\n    shifttime = \"Friday 06:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._9_00_2) {\n    shiftname = schedObj._9_00_2\n    shifttime = \"Friday 09:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._15_00_2) {\n    shiftname = schedObj._15_00_2\n    shifttime = \"Friday 15:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._18_00_2) {\n    shiftname = schedObj._18_00_2\n    shifttime = \"Friday 18:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._21_00_2) {\n    shiftname = schedObj._21_00_2\n    shifttime = \"Friday 21:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._0_00_3) {\n    shiftname = schedObj._0_00_3\n    shifttime = \"Saturday 00:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._4_00_3) {\n    shiftname = schedObj._4_00_3\n    shifttime = \"Saturday 04:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._8_00_3) {\n    shiftname = schedObj._8_00_3\n    shifttime = \"Saturday 08:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._12_00_3) {\n    shiftname = schedObj._12_00_3\n    shifttime = \"Saturday 12:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._16_00_3) {\n    shiftname = schedObj._16_00_3\n    shifttime = \"Saturday 16:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._20_00_3) {\n    shiftname = schedObj._20_00_3\n    shifttime = \"Saturday 20:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._3_00_3) {\n    shiftname = schedObj._3_00_3\n    shifttime = \"Saturday 03:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._6_00_3) {\n    shiftname = schedObj._6_00_3\n    shifttime = \"Saturday 06:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._9_00_3) {\n    shiftname = schedObj._9_00_3\n    shifttime = \"Saturday 09:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._15_00_3) {\n    shiftname = schedObj._15_00_3\n    shifttime = \"Saturday 15:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._18_00_3) {\n    shiftname = schedObj._18_00_3\n    shifttime = \"Saturday 18:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._21_00_3) {\n    shiftname = schedObj._21_00_3\n    shifttime = \"Saturday 21:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._0_00_4) {\n    shiftname = schedObj._0_00_4\n    shifttime = \"Sunday 00:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._4_00_4) {\n    shiftname = schedObj._4_00_4\n    shifttime = \"Sunday 04:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._8_00_4) {\n    shiftname = schedObj._8_00_4\n    shifttime = \"Sunday 08:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._12_00_4) {\n    shiftname = schedObj._12_00_4\n    shifttime = \"Sunday 12:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._16_00_4) {\n    shiftname = schedObj._16_00_4\n    shifttime = \"Sunday 16:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._20_00_4) {\n    shiftname = schedObj._20_00_4\n    shifttime = \"Sunday 20:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._3_00_4) {\n    shiftname = schedObj._3_00_4\n    shifttime = \"Sunday 03:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._6_00_4) {\n    shiftname = schedObj._6_00_4\n    shifttime = \"Sunday 06:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._9_00_4) {\n    shiftname = schedObj._9_00_4\n    shifttime = \"Sunday 09:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._15_00_4) {\n    shiftname = schedObj._15_00_4\n    shifttime = \"Sunday 15:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._18_00_4) {\n    shiftname = schedObj._18_00_4\n    shifttime = \"Sunday 18:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._21_00_4) {\n    shiftname = schedObj._21_00_4\n    shifttime = \"Sunday 21:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._0_00) {\n    shiftname = schedObj._0_00\n    shifttime = \"Wednesday 00:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._4_00) {\n    shiftname = schedObj._4_00\n    shifttime = \"Wednesday 04:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._8_00) {\n    shiftname = schedObj._8_00\n    shifttime = \"Wednesday 08:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._12_00) {\n    shiftname = schedObj._12_00\n    shifttime = \"Wednesday 12:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._16_00) {\n    shiftname = schedObj._16_00\n    shifttime = \"Wednesday 16:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._20_00) {\n    shiftname = schedObj._20_00\n    shifttime = \"Wednesday 20:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._3_00) {\n    shiftname = schedObj._3_00\n    shifttime = \"Wednesday 03:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._6_00) {\n    shiftname = schedObj._6_00\n    shifttime = \"Wednesday 06:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._9_00) {\n    shiftname = schedObj._9_00\n    shifttime = \"Wednesday 09:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._15_00) {\n    shiftname = schedObj._15_00\n    shifttime = \"Wednesday 15:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._18_00) {\n    shiftname = schedObj._18_00\n    shifttime = \"Wednesday 18:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._21_00) {\n    shiftname = schedObj._21_00\n    shifttime = \"Wednesday 21:00\"\n    newPayload.push({ shiftname, shifttime })\n}\n\nmsg2.payload = newPayload\nreturn msg2\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 200,
+        "wires": [
+            [
+                "6fb71ec28f777812"
+            ]
+        ]
+    },
+    {
+        "id": "6fb71ec28f777812",
+        "type": "ui_table",
+        "z": "e0d673d05b136ba1",
+        "group": "8a8e81d0ef6cf6e2",
+        "name": "",
+        "order": 1,
+        "width": "6",
+        "height": "8",
+        "columns": [
+            {
+                "field": "shifttime",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "shiftname",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 560,
+        "y": 200,
+        "wires": []
     },
     {
         "id": "53035f704bb7e6be",
