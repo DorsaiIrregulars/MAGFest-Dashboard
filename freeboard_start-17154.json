@@ -25,7 +25,7 @@
                 "type": "text_widget",
                 "settings": {
                     "size": "regular",
-                    "value": "datasources[\"OnShift\"][0][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][0][\"Firstname\"]+" "+datasources[\"OnShift\"][0][\"Lastname\"]",
+                    "value": "datasources[\"OnShift\"][0][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][0][\"Firstname\"]+\" \"+datasources[\"OnShift\"][0][\"Lastname\"]",
                     "animate": true
                 }
             },
@@ -33,7 +33,7 @@
                 "type": "text_widget",
                 "settings": {
                     "size": "regular",
-                    "value": "datasources[\"OnShift\"][1][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][1][\"Firstname\"]+" "+datasources[\"OnShift\"][1][\"Lastname\"]",
+                    "value": "datasources[\"OnShift\"][1][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][1][\"Firstname\"]+\" \"+datasources[\"OnShift\"][1][\"Lastname\"]",
                     "animate": true
                 }
             },
@@ -41,7 +41,7 @@
                 "type": "text_widget",
                 "settings": {
                     "size": "regular",
-                    "value": "datasources[\"OnShift\"][2][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][2][\"Firstname\"]+" "+datasources[\"OnShift\"][2][\"Lastname\"]",
+                    "value": "datasources[\"OnShift\"][2][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][2][\"Firstname\"]+\" \"+datasources[\"OnShift\"][2][\"Lastname\"]",
                     "animate": true
                 }
             },
@@ -49,7 +49,7 @@
                 "type": "text_widget",
                 "settings": {
                     "size": "regular",
-                    "value": "datasources[\"OnShift\"][3][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][3][\"Firstname\"]+" "+datasources[\"OnShift\"][3][\"Lastname\"]",
+                    "value": "datasources[\"OnShift\"][3][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][3][\"Firstname\"]+\" \"+datasources[\"OnShift\"][3][\"Lastname\"]",
                     "animate": true
                 }
             },
@@ -57,7 +57,7 @@
                 "type": "text_widget",
                 "settings": {
                     "size": "regular",
-                    "value": "datasources[\"OnShift\"][4][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][4][\"Firstname\"]+" "+datasources[\"OnShift\"][4][\"Lastname\"]",
+                    "value": "datasources[\"OnShift\"][4][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][4][\"Firstname\"]+\" \"+datasources[\"OnShift\"][4][\"Lastname\"]",
                     "animate": true
                 }
             },
@@ -65,7 +65,7 @@
                 "type": "text_widget",
                 "settings": {
                     "size": "regular",
-                    "value": "datasources[\"OnShift\"][5][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][5][\"Firstname\"]+" "+datasources[\"OnShift\"][5][\"Lastname\"]",
+                    "value": "datasources[\"OnShift\"][5][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][5][\"Firstname\"]+\" \"+datasources[\"OnShift\"][5][\"Lastname\"]",
                     "animate": true
                 }
             },
@@ -73,7 +73,7 @@
                 "type": "text_widget",
                 "settings": {
                     "size": "regular",
-                    "value": "datasources[\"OnShift\"][6][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][6][\"Firstname\"]+" "+datasources[\"OnShift\"][6][\"Lastname\"]",
+                    "value": "datasources[\"OnShift\"][6][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][6][\"Firstname\"]+\" \"+datasources[\"OnShift\"][6][\"Lastname\"]",
                     "animate": true
                 }
             },
@@ -81,7 +81,7 @@
                 "type": "text_widget",
                 "settings": {
                     "size": "regular",
-                    "value": "datasources[\"OnShift\"][7][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][7][\"Firstname\"]+" "+datasources[\"OnShift\"][7][\"Lastname\"]",
+                    "value": "datasources[\"OnShift\"][7][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][7][\"Firstname\"]+\" \"+datasources[\"OnShift\"][7][\"Lastname\"]",
                     "animate": true
                 }
             },
@@ -89,7 +89,7 @@
                 "type": "text_widget",
                 "settings": {
                     "size": "regular",
-                    "value": "datasources[\"OnShift\"][8][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][8][\"Firstname\"]+" "+datasources[\"OnShift\"][8][\"Lastname\"]",
+                    "value": "datasources[\"OnShift\"][8][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][8][\"Firstname\"]+\" \"+datasources[\"OnShift\"][8][\"Lastname\"]",
                     "animate": true
                 }
             },
@@ -97,7 +97,7 @@
                 "type": "text_widget",
                 "settings": {
                     "size": "regular",
-                    "value": "datasources[\"OnShift\"][9][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][9][\"Firstname\"]+" "+datasources[\"OnShift\"][9][\"Lastname\"]",
+                    "value": "datasources[\"OnShift\"][9][\"ShiftName\"]+\" : \"+datasources[\"OnShift\"][9][\"Firstname\"]+\" \"+datasources[\"OnShift\"][9][\"Lastname\"]",
                     "animate": true
                 }
             }
