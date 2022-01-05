@@ -211,6 +211,49 @@
         "color": "#DDAA99"
     },
     {
+        "id": "0e2c6892670a5d8a",
+        "type": "subflow",
+        "name": "FixTimes",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "495d1e329d050174"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 260,
+                "y": 280,
+                "wires": [
+                    {
+                        "id": "9744d98e79c2cfd4",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 260,
+                "y": 340,
+                "wires": [
+                    {
+                        "id": "9744d98e79c2cfd4",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
         "id": "a14f81bfbb849ce6",
         "type": "ui_base",
         "theme": {
@@ -315,7 +358,8 @@
         "order": 1,
         "disp": false,
         "width": "6",
-        "collapse": false
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "59e42317.d932fc",
@@ -329,10 +373,10 @@
     {
         "id": "87f8e49c5062a93e",
         "type": "ui_group",
-        "name": "DI Test",
+        "name": "Currently On Shift",
         "tab": "c6309067555db8ae",
         "order": 1,
-        "disp": false,
+        "disp": true,
         "width": "6",
         "collapse": false,
         "className": ""
@@ -407,6 +451,17 @@
         "hidden": false
     },
     {
+        "id": "8a8e81d0ef6cf6e2",
+        "type": "ui_group",
+        "name": "When Am I On Shift",
+        "tab": "c6309067555db8ae",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "5eb0bd6b.74b794",
         "type": "function",
         "z": "2924702c.b33a7",
@@ -453,6 +508,178 @@
             [
                 "9210b844.66df98"
             ]
+        ]
+    },
+    {
+        "id": "74cfac0a2eccde5c",
+        "type": "function",
+        "z": "0e2c6892670a5d8a",
+        "name": "SetupTimeVars",
+        "func": "var msg2 = msg\nmsg2.timedata = new Object\nvar currentTime = new Date(Date.now())\nvar tzofffset = -5\nvar offset = (currentTime.getTimezoneOffset() + (tzofffset * 60)) * 60 * 1000;\ncurrentTime.setTime(currentTime.getTime() + offset);\n\nmsg2.timedata.currentDate = currentTime.getDate()\nmsg2.timedata.currentHour = currentTime.getHours()\nvar currentLineShift = currentTime.getHours()\nif (currentTime.getHours() % 4 != 0) {\n    currentLineShift = currentTime.getHours() - (currentTime.getHours() % 4)\n}\nvar currentGLShift = currentTime.getHours()\nif (currentTime.getHours() % 3 != 0) {\n    currentGLShift = currentTime.getHours() - (currentTime.getHours() % 3)\n}\nmsg2.timedata.glshiftstart = currentGLShift\nmsg2.timedata.lineshiftstart = currentLineShift\nmsg2.timedata.tzoffset = currentTime.getTimezoneOffset()\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 180,
+        "wires": [
+            [
+                "9744d98e79c2cfd4"
+            ]
+        ]
+    },
+    {
+        "id": "495d1e329d050174",
+        "type": "json",
+        "z": "0e2c6892670a5d8a",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 150,
+        "y": 40,
+        "wires": [
+            [
+                "d193241bf0404f01"
+            ]
+        ]
+    },
+    {
+        "id": "d193241bf0404f01",
+        "type": "string",
+        "z": "0e2c6892670a5d8a",
+        "name": "",
+        "methods": [
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": ":00"
+                    },
+                    {
+                        "type": "str",
+                        "value": "_00"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"1"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_1"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"2"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_2"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"3"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_3"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"4"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_4"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"6"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_6"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"9"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_9"
+                    }
+                ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"0"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_0"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "74cfac0a2eccde5c"
+            ]
+        ]
+    },
+    {
+        "id": "9744d98e79c2cfd4",
+        "type": "json",
+        "z": "0e2c6892670a5d8a",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 150,
+        "y": 280,
+        "wires": [
+            []
         ]
     },
     {
@@ -1135,24 +1362,6 @@
         ]
     },
     {
-        "id": "79b008bcb1590862",
-        "type": "ui_list",
-        "z": "89faa08e6ceba514",
-        "group": "87f8e49c5062a93e",
-        "name": "",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "lineType": "three",
-        "actionType": "none",
-        "allowHTML": false,
-        "outputs": 0,
-        "topic": "",
-        "x": 190,
-        "y": 460,
-        "wires": []
-    },
-    {
         "id": "9d864fb1ed6525e7",
         "type": "book",
         "z": "89faa08e6ceba514",
@@ -1210,8 +1419,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 550,
-        "y": 340,
+        "x": 510,
+        "y": 440,
         "wires": []
     },
     {
@@ -1245,11 +1454,12 @@
             "b359a766202518ac"
         ],
         "timeout": "30",
-        "x": 560,
+        "x": 360,
         "y": 280,
         "wires": [
             [
-                "74db4799d4b6dd13"
+                "74db4799d4b6dd13",
+                "1da250b608b9d943"
             ]
         ]
     },
@@ -1326,6 +1536,53 @@
         "wires": []
     },
     {
+        "id": "1da250b608b9d943",
+        "type": "ui_table",
+        "z": "89faa08e6ceba514",
+        "group": "926d6874.375768",
+        "name": "",
+        "order": 0,
+        "width": "6",
+        "height": "6",
+        "columns": [
+            {
+                "field": "Firstname",
+                "title": "First",
+                "width": "30%",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "Lastname",
+                "title": "Last",
+                "width": "30%",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "ShiftName",
+                "title": "Post",
+                "width": "40%",
+                "align": "right",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 550,
+        "y": 280,
+        "wires": []
+    },
+    {
         "id": "2b226e356ce68c6c",
         "type": "subflow:6f90ad3f.f78d24",
         "z": "25fcc8c591bf5c97",
@@ -1355,7 +1612,7 @@
             [
                 "61a858c7240f645c",
                 "4facf64438b80c1b",
-                "53983857cf641e87"
+                "c1976afa6e2d9e93"
             ]
         ]
     },
@@ -1449,25 +1706,6 @@
         ]
     },
     {
-        "id": "d6794e27d0340101",
-        "type": "function",
-        "z": "25fcc8c591bf5c97",
-        "name": "SetupTimeVars",
-        "func": "var msg2 = msg\nmsg2.timedata = new Object\nvar currentTime = new Date(Date.now())\nvar tzofffset = -5\nvar offset = (currentTime.getTimezoneOffset() + (tzofffset * 60)) * 60 * 1000;\ncurrentTime.setTime(currentTime.getTime() + offset);\n\nmsg2.timedata.currentDate = currentTime.getDate()\nmsg2.timedata.currentHour = currentTime.getHours()\nvar currentLineShift = currentTime.getHours()\nif (currentTime.getHours() % 4 != 0) {\n    currentLineShift = currentTime.getHours() - (currentTime.getHours() % 4)\n}\nvar currentGLShift = currentTime.getHours()\nif (currentTime.getHours() % 3 != 0) {\n    currentGLShift = currentTime.getHours() - (currentTime.getHours() % 3)\n}\nmsg2.timedata.currentDate = 7\nmsg2.timedata.glshiftstart = currentGLShift\nmsg2.timedata.lineshiftstart = currentLineShift\nmsg2.timedata.tzoffset = currentTime.getTimezoneOffset()\nreturn msg2;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 200,
-        "wires": [
-            [
-                "c3e1e9eb11e4db4a"
-            ]
-        ]
-    },
-    {
         "id": "cdfd86b653707fb3",
         "type": "function",
         "z": "25fcc8c591bf5c97",
@@ -1478,8 +1716,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
-        "y": 260,
+        "x": 460,
+        "y": 200,
         "wires": [
             [
                 "5f92a06bbc95fc48"
@@ -1491,8 +1729,8 @@
         "type": "freeboard",
         "z": "25fcc8c591bf5c97",
         "name": "CurrentShift",
-        "x": 410,
-        "y": 320,
+        "x": 670,
+        "y": 340,
         "wires": []
     },
     {
@@ -1506,8 +1744,8 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 150,
-        "y": 260,
+        "x": 290,
+        "y": 200,
         "wires": [
             [
                 "cdfd86b653707fb3"
@@ -1530,12 +1768,11 @@
         "timeout": "",
         "count": "",
         "reduceRight": false,
-        "x": 490,
-        "y": 260,
+        "x": 630,
+        "y": 200,
         "wires": [
             [
-                "f3e9625672020f0a",
-                "193af0ee148c96ef"
+                "f3e9625672020f0a"
             ]
         ]
     },
@@ -1544,173 +1781,17 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "removeEmptyItems",
-        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != null) { return el };\n});\nmsg2.payload = newPayload\nreturn msg2;",
+        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != null && el.Firstname != null) { return el };\n});\nmsg2.payload = newPayload\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 190,
-        "y": 320,
+        "x": 550,
+        "y": 260,
         "wires": [
             [
-                "bdfe4e9e09512596",
                 "31a21684bf7c06c5"
-            ]
-        ]
-    },
-    {
-        "id": "53983857cf641e87",
-        "type": "json",
-        "z": "25fcc8c591bf5c97",
-        "name": "",
-        "property": "payload",
-        "action": "str",
-        "pretty": false,
-        "x": 150,
-        "y": 200,
-        "wires": [
-            [
-                "66eeb7c6e0de5a7a"
-            ]
-        ]
-    },
-    {
-        "id": "66eeb7c6e0de5a7a",
-        "type": "string",
-        "z": "25fcc8c591bf5c97",
-        "name": "",
-        "methods": [
-            {
-                "name": "replaceAll",
-                "params": [
-                    {
-                        "type": "str",
-                        "value": ":00"
-                    },
-                    {
-                        "type": "str",
-                        "value": "_00"
-                    }
-                ]
-            },
-            {
-                "name": "replaceAll",
-                "params": [
-                    {
-                        "type": "str",
-                        "value": "\\\"1"
-                    },
-                    {
-                        "type": "str",
-                        "value": "\\\"_1"
-                    }
-                ]
-            },
-            {
-                "name": "replaceAll",
-                "params": [
-                    {
-                        "type": "str",
-                        "value": "\\\"2"
-                    },
-                    {
-                        "type": "str",
-                        "value": "\\\"_2"
-                    }
-                ]
-            },
-            {
-                "name": "replaceAll",
-                "params": [
-                    {
-                        "type": "str",
-                        "value": "\\\"3"
-                    },
-                    {
-                        "type": "str",
-                        "value": "\\\"_3"
-                    }
-                ]
-            },
-            {
-                "name": "replaceAll",
-                "params": [
-                    {
-                        "type": "str",
-                        "value": "\\\"4"
-                    },
-                    {
-                        "type": "str",
-                        "value": "\\\"_4"
-                    }
-                ]
-            },
-            {
-                "name": "replaceAll",
-                "params": [
-                    {
-                        "type": "str",
-                        "value": "\\\"6"
-                    },
-                    {
-                        "type": "str",
-                        "value": "\\\"_6"
-                    }
-                ]
-            },
-            {
-                "name": "replaceAll",
-                "params": [
-                    {
-                        "type": "str",
-                        "value": "\\\"9"
-                    },
-                    {
-                        "type": "str",
-                        "value": "\\\"_9"
-                    }
-                ]
-            },
-            {
-                "name": "replaceAll",
-                "params": [
-                    {
-                        "type": "str",
-                        "value": "\\\"0"
-                    },
-                    {
-                        "type": "str",
-                        "value": "\\\"_0"
-                    }
-                ]
-            }
-        ],
-        "prop": "payload",
-        "propout": "payload",
-        "object": "msg",
-        "objectout": "msg",
-        "x": 270,
-        "y": 200,
-        "wires": [
-            [
-                "d6794e27d0340101"
-            ]
-        ]
-    },
-    {
-        "id": "c3e1e9eb11e4db4a",
-        "type": "json",
-        "z": "25fcc8c591bf5c97",
-        "name": "",
-        "property": "payload",
-        "action": "obj",
-        "pretty": false,
-        "x": 590,
-        "y": 200,
-        "wires": [
-            [
-                "c6e45f56a52a6bcb"
             ]
         ]
     },
@@ -1727,9 +1808,58 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 650,
-        "y": 260,
+        "x": 610,
+        "y": 100,
         "wires": []
+    },
+    {
+        "id": "8d03dd7c8c0783ac",
+        "type": "ui_dropdown",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "8a8e81d0ef6cf6e2",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 270,
+        "y": 300,
+        "wires": [
+            [
+                "bdfe4e9e09512596"
+            ]
+        ]
+    },
+    {
+        "id": "c1976afa6e2d9e93",
+        "type": "subflow:0e2c6892670a5d8a",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "x": 160,
+        "y": 220,
+        "wires": [
+            [
+                "c6e45f56a52a6bcb"
+            ],
+            [
+                "8d03dd7c8c0783ac"
+            ]
+        ]
     },
     {
         "id": "53035f704bb7e6be",
