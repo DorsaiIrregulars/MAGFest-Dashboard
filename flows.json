@@ -18,7 +18,15 @@
     {
         "id": "25fcc8c591bf5c97",
         "type": "tab",
-        "label": "Display",
+        "label": "Freeboard",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e0d673d05b136ba1",
+        "type": "tab",
+        "label": "On-Shift-Page",
         "disabled": false,
         "info": "",
         "env": []
@@ -1623,8 +1631,8 @@
         "name": "",
         "mode": "return",
         "links": [],
-        "x": 315,
-        "y": 420,
+        "x": 735,
+        "y": 260,
         "wires": []
     },
     {
@@ -1791,7 +1799,8 @@
         "y": 260,
         "wires": [
             [
-                "31a21684bf7c06c5"
+                "31a21684bf7c06c5",
+                "bdfe4e9e09512596"
             ]
         ]
     },
@@ -1813,9 +1822,38 @@
         "wires": []
     },
     {
-        "id": "8d03dd7c8c0783ac",
-        "type": "ui_dropdown",
+        "id": "c1976afa6e2d9e93",
+        "type": "subflow:0e2c6892670a5d8a",
         "z": "25fcc8c591bf5c97",
+        "name": "",
+        "x": 160,
+        "y": 220,
+        "wires": [
+            [
+                "c6e45f56a52a6bcb"
+            ],
+            [
+                "0cfc5ad27ec8bd9c"
+            ]
+        ]
+    },
+    {
+        "id": "0cfc5ad27ec8bd9c",
+        "type": "link out",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "dbbb26e5dd43589d"
+        ],
+        "x": 315,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "de9052122283d962",
+        "type": "ui_dropdown",
+        "z": "e0d673d05b136ba1",
         "name": "",
         "label": "",
         "tooltip": "",
@@ -1837,27 +1875,71 @@
         "topic": "topic",
         "topicType": "msg",
         "className": "",
-        "x": 270,
-        "y": 300,
+        "x": 570,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dbbb26e5dd43589d",
+        "type": "link in",
+        "z": "e0d673d05b136ba1",
+        "name": "",
+        "links": [
+            "0cfc5ad27ec8bd9c"
+        ],
+        "x": 75,
+        "y": 60,
         "wires": [
             [
-                "bdfe4e9e09512596"
+                "e49eb86ff0f633aa"
             ]
         ]
     },
     {
-        "id": "c1976afa6e2d9e93",
-        "type": "subflow:0e2c6892670a5d8a",
-        "z": "25fcc8c591bf5c97",
+        "id": "e49eb86ff0f633aa",
+        "type": "change",
+        "z": "e0d673d05b136ba1",
         "name": "",
-        "x": 160,
-        "y": 220,
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "fullsched",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 210,
+        "y": 60,
         "wires": [
             [
-                "c6e45f56a52a6bcb"
-            ],
+                "4b6d269fd30cae03"
+            ]
+        ]
+    },
+    {
+        "id": "4b6d269fd30cae03",
+        "type": "function",
+        "z": "e0d673d05b136ba1",
+        "name": "",
+        "func": "var msg2 = msg\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\n\nfor (var i=0; i<msg.fullsched.length; i++) {\n    if (msg.fullsched[i].Firstname != undefined) {\n        optTitle = msg.fullsched[i].Firstname+\" \"+msg.fullsched[i].Lastname\n        msg2.options.push(optTitle)\n    }\n}\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 60,
+        "wires": [
             [
-                "8d03dd7c8c0783ac"
+                "de9052122283d962"
             ]
         ]
     },
