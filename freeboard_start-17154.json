@@ -1,1 +1,102 @@
-{"version":1,"allow_edit":true,"plugins":[],"panes":[{"width":1,"row":{"3":1},"col":{"3":1},"col_width":3,"widgets":[{"type":"text_widget","settings":{"size":"big","value":"Who is on-shift now?","animate":true}}]},{"width":1,"row":{"3":7},"col":{"3":1},"col_width":1,"widgets":[{"type":"text_widget","settings":{"size":"regular","value":"Contract Officer","animate":true}}]},{"width":1,"row":{"3":7},"col":{"3":2},"col_width":1,"widgets":[{"type":"text_widget","settings":{"size":"regular","value":"datasources[\"DO\"][\"Firstname\"]+\" \"+datasources[\"DO\"][\"Lastname\"]","animate":true}}]}],"datasources":[{"name":"Time","type":"clock","settings":{"refresh":1}},{"name":"Schedule","type":"FullSchedule","settings":{}},{"name":"DO","type":"DOSchedule","settings":{}}],"columns":3}
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"width": 1,
+			"row": {
+				"3": 1,
+				"4": 1
+			},
+			"col": {
+				"3": 1,
+				"4": 2
+			},
+			"col_width": 2,
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"size": "regular",
+						"value": "Who is on-shift now?",
+						"animate": true
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 7,
+				"4": 5,
+				"5": 7
+			},
+			"col": {
+				"3": 2,
+				"4": 3,
+				"5": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"size": "regular",
+						"value": "datasources[\"OnShift\"][0][\"ShiftName\"]",
+						"animate": true
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 7,
+				"4": 5,
+				"5": 7
+			},
+			"col": {
+				"3": 1,
+				"4": 2,
+				"5": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"size": "regular",
+						"value": "datasources[\"OnShift\"][0][\"Firstname\"]+\" \"+datasources[\"OnShift\"][0][\"Lastname\"]",
+						"animate": true
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "Time",
+			"type": "clock",
+			"settings": {
+				"refresh": 1
+			}
+		},
+		{
+			"name": "Schedule",
+			"type": "FullSchedule",
+			"settings": {}
+		},
+		{
+			"name": "DO",
+			"type": "DOSchedule",
+			"settings": {}
+		},
+		{
+			"name": "OnShift",
+			"type": "CurrentShift",
+			"settings": {}
+		}
+	],
+	"columns": 4
+}
