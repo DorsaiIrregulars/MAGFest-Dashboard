@@ -22,52 +22,12 @@
 						"value": "Who is on-shift now?",
 						"animate": true
 					}
-				}
-			]
-		},
-		{
-			"width": 1,
-			"row": {
-				"3": 7,
-				"4": 5,
-				"5": 7
-			},
-			"col": {
-				"3": 2,
-				"4": 3,
-				"5": 1
-			},
-			"col_width": 1,
-			"widgets": [
+				},
 				{
 					"type": "text_widget",
 					"settings": {
 						"size": "regular",
-						"value": "datasources[\"OnShift\"][0][\"ShiftName\"]",
-						"animate": true
-					}
-				}
-			]
-		},
-		{
-			"width": 1,
-			"row": {
-				"3": 7,
-				"4": 5,
-				"5": 7
-			},
-			"col": {
-				"3": 1,
-				"4": 2,
-				"5": 2
-			},
-			"col_width": 1,
-			"widgets": [
-				{
-					"type": "text_widget",
-					"settings": {
-						"size": "regular",
-						"value": "datasources[\"OnShift\"][0][\"Firstname\"]+\" \"+datasources[\"OnShift\"][0][\"Lastname\"]",
+						"value": "returnData+datasources[\"OnShift\"][i][\"ShiftName\"]+\" : \"\nreturnData = returnData+datasources[\"OnShift\"][i][\"Firstname\"]+\" \"\nreturnData = returnData+datasources[\"OnShift\"][i][\"Lastname\"]+\"\\n\"\nreturn returnData",
 						"animate": true
 					}
 				}
