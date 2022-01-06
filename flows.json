@@ -1860,8 +1860,8 @@
         "place": "Select option",
         "group": "8a8e81d0ef6cf6e2",
         "order": 0,
-        "width": 0,
-        "height": 0,
+        "width": "6",
+        "height": "1",
         "passthru": true,
         "multiple": false,
         "options": [
@@ -1930,8 +1930,8 @@
         "id": "4b6d269fd30cae03",
         "type": "function",
         "z": "e0d673d05b136ba1",
-        "name": "",
-        "func": "var msg2 = msg\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\n\nfor (var i=0; i<msg.fullsched.length; i++) {\n    if (msg.fullsched[i].Firstname != undefined) {\n        optTitle = msg.fullsched[i].Firstname+\" \"+msg.fullsched[i].Lastname\n        newOpt[optTitle] = i\n        msg2.options.push(newOpt)\n        var newOpt = new Object()\n    }\n}\nflow.set(\"fullsched\",msg.fullsched)\nreturn msg2;",
+        "name": "buildOptions",
+        "func": "var msg2 = msg\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\n\nfor (var i=0; i<msg.fullsched.length; i++) {\n    if (msg.fullsched[i].Firstname != undefined) {\n        optTitle = msg.fullsched[i].Firstname+\" \"+msg.fullsched[i].Lastname\n        newOpt[optTitle] = i\n        msg2.options.push(newOpt)\n        var newOpt = new Object()\n    }\n}\noptTitle.sort((a, b) => (a.optTitle > b.optTitle) ? 1 : ((b.optTitle > a.optTitle) ? -1 : 0))\n\nflow.set(\"fullsched\",msg.fullsched)\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1941,7 +1941,8 @@
         "y": 60,
         "wires": [
             [
-                "de9052122283d962"
+                "de9052122283d962",
+                "af04ab5f52785715"
             ]
         ]
     },
@@ -1950,7 +1951,7 @@
         "type": "debug",
         "z": "e0d673d05b136ba1",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2014,7 +2015,7 @@
         ],
         "outputs": 0,
         "cts": false,
-        "x": 560,
+        "x": 670,
         "y": 200,
         "wires": []
     },
