@@ -662,6 +662,19 @@
                         "value": "\\\"_0"
                     }
                 ]
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\\"8"
+                    },
+                    {
+                        "type": "str",
+                        "value": "\\\"_8"
+                    }
+                ]
             }
         ],
         "prop": "payload",
@@ -1780,7 +1793,8 @@
         "y": 200,
         "wires": [
             [
-                "f3e9625672020f0a"
+                "f3e9625672020f0a",
+                "193af0ee148c96ef"
             ]
         ]
     },
@@ -1809,7 +1823,7 @@
         "type": "debug",
         "z": "25fcc8c591bf5c97",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1817,8 +1831,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 610,
-        "y": 100,
+        "x": 470,
+        "y": 380,
         "wires": []
     },
     {
@@ -1830,7 +1844,8 @@
         "y": 220,
         "wires": [
             [
-                "c6e45f56a52a6bcb"
+                "c6e45f56a52a6bcb",
+                "193af0ee148c96ef"
             ],
             [
                 "0cfc5ad27ec8bd9c"
@@ -1931,7 +1946,7 @@
         "type": "function",
         "z": "e0d673d05b136ba1",
         "name": "buildOptions",
-        "func": "var msg2 = msg\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\n\nfor (var i=0; i<msg.fullsched.length; i++) {\n    if (msg.fullsched[i].Firstname != undefined) {\n        optTitle = msg.fullsched[i].Firstname+\" \"+msg.fullsched[i].Lastname\n        newOpt[optTitle] = i\n        msg2.options.push(newOpt)\n        var newOpt = new Object()\n    }\n}\noptTitle.sort((a, b) => (a.optTitle > b.optTitle) ? 1 : ((b.optTitle > a.optTitle) ? -1 : 0))\n\nflow.set(\"fullsched\",msg.fullsched)\nreturn msg2;",
+        "func": "var msg2 = msg\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\n\nfor (var i=0; i<msg.fullsched.length; i++) {\n    if (msg.fullsched[i].Firstname != undefined) {\n        optTitle = msg.fullsched[i].Firstname+\" \"+msg.fullsched[i].Lastname\n        newOpt[optTitle] = i\n        msg2.options.push(newOpt)\n        var newOpt = new Object()\n    }\n}\n\nflow.set(\"fullsched\",msg.fullsched)\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
