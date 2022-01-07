@@ -1890,8 +1890,8 @@
         "topic": "topic",
         "topicType": "msg",
         "className": "",
-        "x": 670,
-        "y": 60,
+        "x": 310,
+        "y": 120,
         "wires": [
             [
                 "8d760cabbc97b624"
@@ -1956,8 +1956,7 @@
         "y": 60,
         "wires": [
             [
-                "6be27187784e7336",
-                "de9052122283d962"
+                "6be27187784e7336"
             ]
         ]
     },
@@ -1989,8 +1988,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
-        "y": 140,
+        "x": 490,
+        "y": 120,
         "wires": [
             [
                 "6fb71ec28f777812"
@@ -2031,7 +2030,7 @@
         "outputs": 0,
         "cts": false,
         "x": 670,
-        "y": 200,
+        "y": 120,
         "wires": []
     },
     {
@@ -2046,6 +2045,13 @@
                 "pt": "msg",
                 "to": "msg.options^(name)",
                 "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "origOpts",
+                "pt": "msg",
+                "to": "options",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -2053,12 +2059,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 230,
-        "y": 120,
+        "x": 570,
+        "y": 60,
         "wires": [
             [
-                "d10505f2f7fd0601",
-                "af04ab5f52785715"
+                "d10505f2f7fd0601"
             ]
         ]
     },
@@ -2067,17 +2072,17 @@
         "type": "function",
         "z": "e0d673d05b136ba1",
         "name": "buildOptions",
-        "func": "var msg2 = msg\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\nvar optVal = 0\n\nfor (var i=0; i<msg.options.legnth; i++) {\n    optTitle = msg.options[i].name\n    optVal = msg.options[i].value\n    newOpt[optTitle] = optVal\n    msg2.options.push(newOpt)\n    node.warn(optTitle)\n    var newOpt = new Object()\n}\n\nreturn msg2;",
+        "func": "var msg2 = msg\nmsg2.origOpts = msg2.options\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\nvar optVal = 0\n\nfor (var i=0; i<msg.origOpts.length; i++) {\n    optTitle = msg.origOpts[i].name\n    optVal = msg.origOpts[i].value\n    newOpt[optTitle] = optVal\n    msg2.options.push(newOpt)\n    var newOpt = new Object()\n}\nnode.warn(msg.options)\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 190,
-        "y": 220,
+        "x": 150,
+        "y": 120,
         "wires": [
             [
-                "af04ab5f52785715"
+                "de9052122283d962"
             ]
         ]
     },
