@@ -365,7 +365,7 @@
         "tab": "59e42317.d932fc",
         "order": 1,
         "disp": false,
-        "width": "6",
+        "width": "12",
         "collapse": false,
         "className": ""
     },
@@ -385,14 +385,14 @@
         "tab": "c6309067555db8ae",
         "order": 1,
         "disp": true,
-        "width": "6",
+        "width": "13",
         "collapse": false,
         "className": ""
     },
     {
         "id": "c6309067555db8ae",
         "type": "ui_tab",
-        "name": "DI",
+        "name": "People",
         "icon": "fa-fire",
         "disabled": false,
         "hidden": false
@@ -1432,7 +1432,7 @@
         "type": "debug",
         "z": "89faa08e6ceba514",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1563,8 +1563,8 @@
         "group": "926d6874.375768",
         "name": "",
         "order": 0,
-        "width": "6",
-        "height": "6",
+        "width": "12",
+        "height": "11",
         "columns": [
             {
                 "field": "Firstname",
@@ -1823,7 +1823,7 @@
         "type": "debug",
         "z": "25fcc8c591bf5c97",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1869,8 +1869,8 @@
         "id": "de9052122283d962",
         "type": "ui_dropdown",
         "z": "e0d673d05b136ba1",
-        "name": "",
-        "label": "",
+        "name": "Select",
+        "label": "Select Name",
         "tooltip": "",
         "place": "Select option",
         "group": "8a8e81d0ef6cf6e2",
@@ -1890,7 +1890,7 @@
         "topic": "topic",
         "topicType": "msg",
         "className": "",
-        "x": 570,
+        "x": 670,
         "y": 60,
         "wires": [
             [
@@ -1945,8 +1945,8 @@
         "id": "4b6d269fd30cae03",
         "type": "function",
         "z": "e0d673d05b136ba1",
-        "name": "buildOptions",
-        "func": "var msg2 = msg\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\n\nfor (var i=0; i<msg.fullsched.length; i++) {\n    if (msg.fullsched[i].Firstname != undefined) {\n        optTitle = msg.fullsched[i].Firstname+\" \"+msg.fullsched[i].Lastname\n        newOpt[optTitle] = i\n        msg2.options.push(newOpt)\n        var newOpt = new Object()\n    }\n}\n\nflow.set(\"fullsched\",msg.fullsched)\nreturn msg2;",
+        "name": "getOptions",
+        "func": "var msg2 = msg\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\n\nfor (var i=0; i<msg.fullsched.length; i++) {\n    if (msg.fullsched[i].Firstname != undefined) {\n        optTitle = msg.fullsched[i].Firstname+\" \"+msg.fullsched[i].Lastname\n        newOpt.name = optTitle\n        newOpt.value = i\n        msg2.options.push(newOpt)\n        var newOpt = new Object()\n    }\n}\n\nflow.set(\"fullsched\",msg.fullsched)\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1956,8 +1956,8 @@
         "y": 60,
         "wires": [
             [
-                "de9052122283d962",
-                "af04ab5f52785715"
+                "6be27187784e7336",
+                "de9052122283d962"
             ]
         ]
     },
@@ -1989,8 +1989,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
-        "y": 200,
+        "x": 650,
+        "y": 140,
         "wires": [
             [
                 "6fb71ec28f777812"
@@ -2002,10 +2002,10 @@
         "type": "ui_table",
         "z": "e0d673d05b136ba1",
         "group": "8a8e81d0ef6cf6e2",
-        "name": "",
+        "name": "Shifts",
         "order": 1,
         "width": "6",
-        "height": "8",
+        "height": "6",
         "columns": [
             {
                 "field": "shifttime",
@@ -2033,6 +2033,53 @@
         "x": 670,
         "y": 200,
         "wires": []
+    },
+    {
+        "id": "6be27187784e7336",
+        "type": "change",
+        "z": "e0d673d05b136ba1",
+        "name": "Sortoptions",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "msg",
+                "to": "msg.options^(name)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 230,
+        "y": 120,
+        "wires": [
+            [
+                "d10505f2f7fd0601",
+                "af04ab5f52785715"
+            ]
+        ]
+    },
+    {
+        "id": "d10505f2f7fd0601",
+        "type": "function",
+        "z": "e0d673d05b136ba1",
+        "name": "buildOptions",
+        "func": "var msg2 = msg\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\nvar optVal = 0\n\nfor (var i=0; i<msg.options.legnth; i++) {\n    optTitle = msg.options[i].name\n    optVal = msg.options[i].value\n    newOpt[optTitle] = optVal\n    msg2.options.push(newOpt)\n    node.warn(optTitle)\n    var newOpt = new Object()\n}\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 220,
+        "wires": [
+            [
+                "af04ab5f52785715"
+            ]
+        ]
     },
     {
         "id": "53035f704bb7e6be",
