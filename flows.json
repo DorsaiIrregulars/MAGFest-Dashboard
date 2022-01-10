@@ -711,7 +711,7 @@
         "method": "PUT",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "https://api.github.com/repos/ksonney/nodered-heroku/contents/{{filename}}",
+        "url": "https://api.github.com/repos/DorsaiIrregulars/MAGFest-Dashboard/contents/{{filename}}",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -767,7 +767,7 @@
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "https://api.github.com/repos/ksonney/nodered-heroku/contents/{{filename}}",
+        "url": "https://api.github.com/repos/DorsaiIrregulars/MAGFest-Dashboard/contents/{{filename}}",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -929,14 +929,14 @@
                 "t": "set",
                 "p": "payload.owner",
                 "pt": "msg",
-                "to": "ksonney",
+                "to": "DorsaiIrregulars",
                 "tot": "str"
             },
             {
                 "t": "set",
                 "p": "payload.repo",
                 "pt": "msg",
-                "to": "nodered-heroku",
+                "to": "MAGFest-Dashboard",
                 "tot": "str"
             },
             {
