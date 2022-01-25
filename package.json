@@ -2,11 +2,11 @@
     "name": "magfest-dashboard",
     "version": "1.0.0",
     "author": {
-        "name": "Alerox"
+        "name": "ksonney"
     },
-    "description": "Node-RED on cloud, deployed in Heroku",
+    "description": "MAGFest Security Schedule Dashboard",
     "engines": {
-        "node": "14.x"
+        "node": "17.x"
     },
     "keywords": [
         "node",
