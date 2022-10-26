@@ -35,7 +35,7 @@
         "id": "1f0274a4dfdeb367",
         "type": "tab",
         "label": "FS",
-        "disabled": true,
+        "disabled": false,
         "info": ""
     },
     {
@@ -1823,7 +1823,7 @@
         "type": "debug",
         "z": "25fcc8c591bf5c97",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1965,7 +1965,7 @@
         "type": "debug",
         "z": "e0d673d05b136ba1",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2072,7 +2072,7 @@
         "type": "function",
         "z": "e0d673d05b136ba1",
         "name": "buildOptions",
-        "func": "var msg2 = msg\nmsg2.origOpts = msg2.options\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\nvar optVal = 0\n\nfor (var i=0; i<msg.origOpts.length; i++) {\n    optTitle = msg.origOpts[i].name\n    optVal = msg.origOpts[i].value\n    newOpt[optTitle] = optVal\n    msg2.options.push(newOpt)\n    var newOpt = new Object()\n}\nnode.warn(msg.options)\nreturn msg2;",
+        "func": "var msg2 = msg\nmsg2.origOpts = msg2.options\nmsg2.options = new Array()\nvar optTitle = \"\"\nvar newOpt = new Object()\nvar optVal = 0\n\nfor (var i=0; i<msg.origOpts.length; i++) {\n    optTitle = msg.origOpts[i].name\n    optVal = msg.origOpts[i].value\n    newOpt[optTitle] = optVal\n    msg2.options.push(newOpt)\n    var newOpt = new Object()\n}\n// node.warn(msg.options)\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2082,7 +2082,8 @@
         "y": 120,
         "wires": [
             [
-                "de9052122283d962"
+                "de9052122283d962",
+                "af04ab5f52785715"
             ]
         ]
     },
@@ -2105,7 +2106,7 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "change",
-        "payload": "/workspace",
+        "payload": "/app",
         "payloadType": "str",
         "x": 90,
         "y": 340,
@@ -2552,7 +2553,7 @@
         "type": "function",
         "z": "1f0274a4dfdeb367",
         "name": "Set folder",
-        "func": "let folder = context.get(\"folder\") || \"/\";\ncontext.set(\"folder\", folder);\n\nlet hidden = context.get(\"hidden\") || false;\ncontext.set(\"hidden\", hidden);\n\nif (msg.topic===\"up\") {\n    var path = folder.split('/');\n    path.pop();\n    folder = path.join('/'); \n    if (folder===\"\") folder=\"/\";\n    context.set(\"folder\", folder);\n}\n\nif (msg.topic===\"change\") {\n    folder=msg.payload;    \n    context.set(\"folder\", folder);\n}\n\nif (msg.topic===\"hidden\") {\n    hidden=msg.payload;    \n    context.set(\"hidden\", hidden);\n}\n\nmsg.payload = {\"start\":folder, \"hidden\": hidden};\nreturn msg;",
+        "func": "let folder = context.get(\"folder\") || \"/app\";\ncontext.set(\"folder\", folder);\n\nlet hidden = context.get(\"hidden\") || false;\ncontext.set(\"hidden\", hidden);\n\nif (msg.topic===\"up\") {\n    var path = folder.split('/');\n    path.pop();\n    folder = path.join('/'); \n    if (folder===\"\") folder=\"/\";\n    context.set(\"folder\", folder);\n}\n\nif (msg.topic===\"change\") {\n    folder=msg.payload;    \n    context.set(\"folder\", folder);\n}\n\nif (msg.topic===\"hidden\") {\n    hidden=msg.payload;    \n    context.set(\"hidden\", hidden);\n}\n\nmsg.payload = {\"start\":folder, \"hidden\": hidden};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2562,7 +2563,8 @@
         "y": 240,
         "wires": [
             [
-                "bac1d476a4d0ef55"
+                "bac1d476a4d0ef55",
+                "52a6d2c32c6aa20f"
             ]
         ]
     },
@@ -2626,7 +2628,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "home",
-        "payload": "/workspace",
+        "payload": "/app",
         "payloadType": "str",
         "topic": "change",
         "topicType": "str",
@@ -3276,7 +3278,7 @@
         "type": "fs-file-lister",
         "z": "1f0274a4dfdeb367",
         "name": "",
-        "start": "/workspace",
+        "start": "/app",
         "pattern": "*.*",
         "folders": "*",
         "hidden": false,
@@ -3289,7 +3291,9 @@
         "x": 280,
         "y": 160,
         "wires": [
-            []
+            [
+                "0f7a8e6438a00194"
+            ]
         ]
     }
 ]
