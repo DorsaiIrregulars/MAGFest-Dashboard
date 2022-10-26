@@ -3209,7 +3209,7 @@ node-red-contrib-cron-plus@latest:
     suncalc2 "^1.8.1"
 
 node-red-contrib-freeboard@ksonney/node-red-contrib-freeboard:
-  version "0.0.9"
+  version "0.1.0"
   resolved "https://codeload.github.com/ksonney/node-red-contrib-freeboard/tar.gz/4304e8b4833c66a62fa488fe3d5a26d3124730d6"
   dependencies:
     body-parser "1.12.0"
