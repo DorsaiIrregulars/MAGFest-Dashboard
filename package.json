@@ -1,12 +1,12 @@
 {
     "name": "magfest-dashboard",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": {
         "name": "ksonney"
     },
     "description": "MAGFest Security Schedule Dashboard",
     "engines": {
-        "node": "17.x"
+        "node": "18.x"
     },
     "keywords": [
         "node",
