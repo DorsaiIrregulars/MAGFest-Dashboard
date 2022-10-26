@@ -35,7 +35,7 @@
         "id": "1f0274a4dfdeb367",
         "type": "tab",
         "label": "FS",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
