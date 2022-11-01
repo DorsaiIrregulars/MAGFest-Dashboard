@@ -24,7 +24,6 @@
         "node-red-contrib-buffer-parser": "^3.2.2",
         "node-red-contrib-chronos": "^1.18.2",
         "node-red-contrib-cron-plus": "latest",
-        "node-red-contrib-freeboard": "ksonney/node-red-contrib-freeboard",
         "node-red-contrib-fs": "~1.4.1",
         "node-red-contrib-mongodb4": "latest",
         "node-red-contrib-mongoql": "latest",
