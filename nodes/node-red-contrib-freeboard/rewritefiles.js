@@ -1,8 +1,4 @@
 var fs = require('fs')
-const execSync = require('child_process').execSync;
-const cmdLine = 'pwd'
-const output = execSync(cmdLine)
-console.log(output)
 
 
 var head =
