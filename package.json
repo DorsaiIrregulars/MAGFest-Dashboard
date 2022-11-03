@@ -42,6 +42,7 @@
         "node-red-node-mongodb": "latest",
         "node-red-node-ui-list": "latest",
         "node-red-node-ui-table": "^0.4.3",
+        "node-red-contrib-freeboard": "latest",
         "redis": "3.0.2",
         "when": "3.7.8"
     }
