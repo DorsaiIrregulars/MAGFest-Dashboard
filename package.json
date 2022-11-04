@@ -16,7 +16,6 @@
     ],
     "dependencies": {
         "feedparser": "2.2.10",
-        "freeboard": "1.0.2",
         "nano": "8.2.2",
         "node-red": "^3.0.2",
         "node-red-contrib-actionflows": "latest",
@@ -42,7 +41,7 @@
         "node-red-node-mongodb": "latest",
         "node-red-node-ui-list": "latest",
         "node-red-node-ui-table": "^0.4.3",
-        "node-red-contrib-freeboard": "latest",
+        "node-red-contrib-freeboard": "https://github.com/ksonney/node-red-contrib-freeboard.git",
         "redis": "3.0.2",
         "when": "3.7.8"
     }

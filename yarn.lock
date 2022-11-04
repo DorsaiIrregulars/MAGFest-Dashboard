@@ -2186,14 +2186,10 @@ frac@~1.1.2:
   resolved "https://registry.yarnpkg.com/frac/-/frac-1.1.2.tgz#3d74f7f6478c88a1b5020306d747dc6313c74d0b"
   integrity sha512-w/XBfkibaTl3YDqASwfDUqkna4Z2p9cFSr1aHDt0WoMTECnRfBOv2WArlZILlqgWlmdIlALXGpM2AOhEk5W3IA==
 
-freeboard@1.0.2:
+freeboard@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/freeboard/-/freeboard-1.0.2.tgz#9d58ec62747a5c29e48af79209a556b09bae8b69"
   integrity sha512-R3uqv7zlAyiZM5MFKVwO5Ttm3MaOztD/qUjzHNhDC2phrR1Wt/H7sU9TIiFHD9FrRJcjBCBwJeQptuu3VJOODw==
-
-"freeboard@git://github.com/freeboard/freeboard#94306b7":
-  version "1.1.3"
-  resolved "git://github.com/freeboard/freeboard#94306b7ecf77932766b674bccbe01483a5a291e8"
 
 fresh@0.2.4:
   version "0.2.4"
@@ -3190,14 +3186,13 @@ node-red-contrib-cron-plus@latest:
     pretty-ms "^7.0.1"
     suncalc2 "^1.8.1"
 
-node-red-contrib-freeboard@latest:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/node-red-contrib-freeboard/-/node-red-contrib-freeboard-0.0.7.tgz#1a7bd4ced8eb55306302e3ff4a771e81afd00300"
-  integrity sha512-h+lazln5IRu7YUpPjEbMOm4IIYzo/1p+vZUuvC2giUQ/4XSzC63z9TX7ztEu9sgegvjZ2F2EDNcZzR0DISAWHQ==
+"node-red-contrib-freeboard@https://github.com/ksonney/node-red-contrib-freeboard.git":
+  version "0.1.3"
+  resolved "https://github.com/ksonney/node-red-contrib-freeboard.git#20c030bd59e3cc2dbea9c0f9a04ae0e85118f35b"
   dependencies:
     body-parser "1.12.0"
     express "4.12.0"
-    freeboard "git://github.com/freeboard/freeboard#94306b7"
+    freeboard "^1.0.2"
     mustache "1.1.0"
 
 node-red-contrib-fs@~1.4.1:
