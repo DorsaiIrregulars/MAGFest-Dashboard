@@ -470,6 +470,45 @@
         "className": ""
     },
     {
+        "id": "e626f6a18dabe1a1",
+        "type": "websocket-listener",
+        "path": "/ws/dosched",
+        "wholemsg": "false"
+    },
+    {
+        "id": "60abf0ec054534e5",
+        "type": "websocket-listener",
+        "path": "/ws/currentshift",
+        "wholemsg": "false"
+    },
+    {
+        "id": "9f0db706b304f79e",
+        "type": "mqtt-broker",
+        "name": "HiveMQ",
+        "broker": "5233bdc1c9264e399b2d5e81e0a4a663.s2.eu.hivemq.cloud",
+        "port": "8883",
+        "clientid": "didash-nodered",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "5",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
         "id": "5eb0bd6b.74b794",
         "type": "function",
         "z": "2924702c.b33a7",
@@ -1480,7 +1519,8 @@
         "wires": [
             [
                 "74db4799d4b6dd13",
-                "1da250b608b9d943"
+                "1da250b608b9d943",
+                "29515021ebbfb9e9"
             ]
         ]
     },
@@ -1604,6 +1644,39 @@
         "wires": []
     },
     {
+        "id": "7658d2828a62c6e3",
+        "type": "http in",
+        "z": "89faa08e6ceba514",
+        "name": "",
+        "url": "/doshift",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29515021ebbfb9e9",
+        "type": "mqtt out",
+        "z": "89faa08e6ceba514",
+        "name": "DiDash-mqtt-out",
+        "topic": "onshift",
+        "qos": "",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9f0db706b304f79e",
+        "x": 690,
+        "y": 360,
+        "wires": []
+    },
+    {
         "id": "2b226e356ce68c6c",
         "type": "subflow:6f90ad3f.f78d24",
         "z": "25fcc8c591bf5c97",
@@ -1683,7 +1756,9 @@
         "x": 180,
         "y": 100,
         "wires": [
-            []
+            [
+                "f176b62dfb8ec7a9"
+            ]
         ]
     },
     {
@@ -1782,7 +1857,8 @@
         "y": 260,
         "wires": [
             [
-                "bdfe4e9e09512596"
+                "bdfe4e9e09512596",
+                "df2a21e12e1525cf"
             ]
         ]
     },
@@ -1829,19 +1905,41 @@
         "links": [
             "dbbb26e5dd43589d"
         ],
-        "x": 315,
-        "y": 280,
+        "x": 235,
+        "y": 340,
         "wires": []
     },
     {
         "id": "b6d9786a9f1dd644",
         "type": "http response",
         "z": "25fcc8c591bf5c97",
-        "name": "",
+        "name": "doshiftout",
         "statusCode": "",
         "headers": {},
-        "x": 370,
-        "y": 500,
+        "x": 400,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "f176b62dfb8ec7a9",
+        "type": "websocket out",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "server": "e626f6a18dabe1a1",
+        "client": "",
+        "x": 470,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "df2a21e12e1525cf",
+        "type": "websocket out",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "server": "60abf0ec054534e5",
+        "client": "",
+        "x": 800,
+        "y": 360,
         "wires": []
     },
     {
