@@ -484,29 +484,44 @@
     {
         "id": "9f0db706b304f79e",
         "type": "mqtt-broker",
-        "name": "HiveMQ",
-        "broker": "5233bdc1c9264e399b2d5e81e0a4a663.s2.eu.hivemq.cloud",
-        "port": "8883",
-        "clientid": "didash-nodered",
+        "name": "CloudMQTT",
+        "broker": "m13.cloudmqtt.com",
+        "port": "16303",
+        "tls": "6caa8a0836501b1f",
+        "clientid": "diddash",
         "autoConnect": true,
         "usetls": false,
-        "protocolVersion": "5",
+        "protocolVersion": "4",
         "keepalive": "60",
         "cleansession": true,
-        "birthTopic": "",
+        "birthTopic": "nodered-didash",
         "birthQos": "0",
-        "birthPayload": "",
+        "birthPayload": "I Live",
         "birthMsg": {},
-        "closeTopic": "",
+        "closeTopic": "nodered-didash",
         "closeQos": "0",
-        "closePayload": "",
+        "closePayload": "I die",
         "closeMsg": {},
-        "willTopic": "",
+        "willTopic": "nodered-didash",
         "willQos": "0",
-        "willPayload": "",
+        "willPayload": "I fell down and can't get up",
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
+    },
+    {
+        "id": "6caa8a0836501b1f",
+        "type": "tls-config",
+        "name": "TLS Basic",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false,
+        "alpnprotocol": ""
     },
     {
         "id": "5eb0bd6b.74b794",
@@ -1519,8 +1534,7 @@
         "wires": [
             [
                 "74db4799d4b6dd13",
-                "1da250b608b9d943",
-                "29515021ebbfb9e9"
+                "1da250b608b9d943"
             ]
         ]
     },
@@ -1657,24 +1671,6 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "29515021ebbfb9e9",
-        "type": "mqtt out",
-        "z": "89faa08e6ceba514",
-        "name": "DiDash-mqtt-out",
-        "topic": "onshift",
-        "qos": "",
-        "retain": "true",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "9f0db706b304f79e",
-        "x": 690,
-        "y": 360,
-        "wires": []
     },
     {
         "id": "2b226e356ce68c6c",
@@ -1837,8 +1833,7 @@
         "y": 200,
         "wires": [
             [
-                "f3e9625672020f0a",
-                "193af0ee148c96ef"
+                "f3e9625672020f0a"
             ]
         ]
     },
@@ -1847,7 +1842,7 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "removeEmptyItems",
-        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != null && el.Firstname != null) { return el };\n});\nmsg2.payload = newPayload\nreturn msg2;",
+        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != null && el.Firstname != null) { return el };\n});\nmsg2.payload = newPayload\nmsg2.topic = \"onshift\"\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1858,7 +1853,8 @@
         "wires": [
             [
                 "bdfe4e9e09512596",
-                "df2a21e12e1525cf"
+                "29515021ebbfb9e9",
+                "193af0ee148c96ef"
             ]
         ]
     },
@@ -1875,8 +1871,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 470,
-        "y": 380,
+        "x": 770,
+        "y": 320,
         "wires": []
     },
     {
@@ -1888,8 +1884,7 @@
         "y": 220,
         "wires": [
             [
-                "c6e45f56a52a6bcb",
-                "193af0ee148c96ef"
+                "c6e45f56a52a6bcb"
             ],
             [
                 "0cfc5ad27ec8bd9c"
@@ -1932,14 +1927,21 @@
         "wires": []
     },
     {
-        "id": "df2a21e12e1525cf",
-        "type": "websocket out",
+        "id": "29515021ebbfb9e9",
+        "type": "mqtt out",
         "z": "25fcc8c591bf5c97",
-        "name": "",
-        "server": "60abf0ec054534e5",
-        "client": "",
-        "x": 800,
-        "y": 360,
+        "name": "DiDash-mqtt-out",
+        "topic": "",
+        "qos": "",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "application/json",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9f0db706b304f79e",
+        "x": 790,
+        "y": 380,
         "wires": []
     },
     {
