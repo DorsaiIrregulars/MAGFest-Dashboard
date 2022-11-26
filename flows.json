@@ -1753,7 +1753,7 @@
         "y": 100,
         "wires": [
             [
-                "f176b62dfb8ec7a9"
+                "e44e6be973b68a6f"
             ]
         ]
     },
@@ -1772,7 +1772,9 @@
         "x": 150,
         "y": 160,
         "wires": [
-            []
+            [
+                "af272a4b73741b4f"
+            ]
         ]
     },
     {
@@ -1842,7 +1844,7 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "removeEmptyItems",
-        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != null && el.Firstname != null) { return el };\n});\nmsg2.payload = newPayload\nmsg2.topic = \"onshift\"\nreturn msg2;",
+        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != null && el.Firstname != null) { return el };\n});\n\nmsg2.payload = newPayload\nmsg2.topic = \"onshift\"\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1916,17 +1918,6 @@
         "wires": []
     },
     {
-        "id": "f176b62dfb8ec7a9",
-        "type": "websocket out",
-        "z": "25fcc8c591bf5c97",
-        "name": "",
-        "server": "e626f6a18dabe1a1",
-        "client": "",
-        "x": 470,
-        "y": 100,
-        "wires": []
-    },
-    {
         "id": "29515021ebbfb9e9",
         "type": "mqtt out",
         "z": "25fcc8c591bf5c97",
@@ -1942,6 +1933,42 @@
         "broker": "9f0db706b304f79e",
         "x": 790,
         "y": 380,
+        "wires": []
+    },
+    {
+        "id": "e44e6be973b68a6f",
+        "type": "mqtt out",
+        "z": "25fcc8c591bf5c97",
+        "name": "dosched-mqtt",
+        "topic": "dosched",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9f0db706b304f79e",
+        "x": 500,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "af272a4b73741b4f",
+        "type": "mqtt out",
+        "z": "25fcc8c591bf5c97",
+        "name": "unfiteredsched",
+        "topic": "unfitered",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9f0db706b304f79e",
+        "x": 560,
+        "y": 160,
         "wires": []
     },
     {
