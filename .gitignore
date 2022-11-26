@@ -10,3 +10,4 @@ node_modules
 .npm
 .profile
 run-local.bat
+yarn.lock
