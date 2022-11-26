@@ -1613,15 +1613,6 @@
         "wires": []
     },
     {
-        "id": "57dd4c4998b12b3b",
-        "type": "freeboard",
-        "z": "25fcc8c591bf5c97",
-        "name": "FullSchedule",
-        "x": 390,
-        "y": 160,
-        "wires": []
-    },
-    {
         "id": "b359a766202518ac",
         "type": "link in",
         "z": "25fcc8c591bf5c97",
@@ -1659,15 +1650,6 @@
         "wires": []
     },
     {
-        "id": "15c85986d96f9566",
-        "type": "freeboard",
-        "z": "25fcc8c591bf5c97",
-        "name": "COSchedule",
-        "x": 390,
-        "y": 100,
-        "wires": []
-    },
-    {
         "id": "61a858c7240f645c",
         "type": "change",
         "z": "25fcc8c591bf5c97",
@@ -1701,9 +1683,7 @@
         "x": 180,
         "y": 100,
         "wires": [
-            [
-                "15c85986d96f9566"
-            ]
+            []
         ]
     },
     {
@@ -1721,9 +1701,7 @@
         "x": 150,
         "y": 160,
         "wires": [
-            [
-                "57dd4c4998b12b3b"
-            ]
+            []
         ]
     },
     {
@@ -1744,15 +1722,6 @@
                 "5f92a06bbc95fc48"
             ]
         ]
-    },
-    {
-        "id": "31a21684bf7c06c5",
-        "type": "freeboard",
-        "z": "25fcc8c591bf5c97",
-        "name": "CurrentShift",
-        "x": 670,
-        "y": 340,
-        "wires": []
     },
     {
         "id": "c6e45f56a52a6bcb",
@@ -1813,7 +1782,6 @@
         "y": 260,
         "wires": [
             [
-                "31a21684bf7c06c5",
                 "bdfe4e9e09512596"
             ]
         ]
@@ -1863,6 +1831,17 @@
         ],
         "x": 315,
         "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b6d9786a9f1dd644",
+        "type": "http response",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 370,
+        "y": 500,
         "wires": []
     },
     {
