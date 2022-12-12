@@ -1477,7 +1477,8 @@
         "y": 160,
         "wires": [
             [
-                "bd3747177cdf7f3d"
+                "bd3747177cdf7f3d",
+                "4d9c0d31f527bbe8"
             ]
         ]
     },
@@ -1506,12 +1507,14 @@
         "method": "GET",
         "ret": "bin",
         "paytoqs": "ignore",
-        "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQcQmdLXBFodwXW42qo1HxS6_rFQYSARbGVFlR4lMFcgHrqYjqepbVg5_4pQnsN3F1ibvEQYPno2wX-/pub?output=xlsx",
+        "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQk60LX_JgfBFeWcJ6aVAKAqoQfojk1CmrX50BmxgnvpDoEwNIVQHPZpnzxvbqkwLl9gzIg2bXNnXzO/pub?output=xlsx",
         "tls": "",
         "persist": false,
         "proxy": "",
+        "insecureHTTPParser": false,
         "authType": "",
         "senderr": false,
+        "headers": [],
         "x": 110,
         "y": 160,
         "wires": [
@@ -1599,7 +1602,7 @@
         "type": "debug",
         "z": "89faa08e6ceba514",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
