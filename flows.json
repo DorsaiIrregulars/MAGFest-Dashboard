@@ -1806,7 +1806,7 @@
         "type": "join",
         "z": "25fcc8c591bf5c97",
         "name": "",
-        "mode": "custom",
+        "mode": "auto",
         "build": "merged",
         "property": "payload",
         "propertyType": "msg",
@@ -1835,7 +1835,7 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "removeEmptyItems",
-        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != null && \n        el.Firstname != null) { return el };\n});\n\nmsg2.payload = newPayload\nmsg2.topic = \"onshift\"\nreturn msg2;",
+        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != undefined && \n        el.Firstname != undefined) { return el };\n});\n\nmsg2.payload = newPayload\nmsg2.topic = \"onshift\"\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1846,7 +1846,8 @@
         "wires": [
             [
                 "bdfe4e9e09512596",
-                "29515021ebbfb9e9"
+                "29515021ebbfb9e9",
+                "193af0ee148c96ef"
             ]
         ]
     },
