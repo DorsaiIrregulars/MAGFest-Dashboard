@@ -28,6 +28,7 @@
         "node-red-contrib-mongoql": "latest",
         "node-red-contrib-postgresql": "latest",
         "node-red-contrib-qrcode-generator": "latest",
+        "node-red-contrib-require": "~0.1.1",
         "node-red-contrib-simple-queue": "latest",
         "node-red-contrib-spreadsheet-in": "~0.6.0",
         "node-red-contrib-string": "latest",
@@ -42,7 +43,6 @@
         "node-red-node-ui-list": "latest",
         "node-red-node-ui-table": "^0.4.3",
         "node-red-node-web-nodes": "~0.3.2",
-        "ics"" "latest",
         "redis": "3.0.2",
         "when": "3.7.8"
     }
