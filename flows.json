@@ -1581,6 +1581,13 @@
                 "t": "delete",
                 "p": "selectedRange",
                 "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "calData",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -1610,7 +1617,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 770,
+        "x": 940,
         "y": 220,
         "wires": []
     },
@@ -1698,7 +1705,7 @@
                 "61a858c7240f645c",
                 "c1976afa6e2d9e93",
                 "af272a4b73741b4f",
-                "fc27451dc5956d25"
+                "073410ab90c21caa"
             ]
         ]
     },
@@ -1991,9 +1998,36 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 820,
-        "y": 140,
+        "x": 1120,
+        "y": 160,
         "wires": []
+    },
+    {
+        "id": "073410ab90c21caa",
+        "type": "change",
+        "z": "25fcc8c591bf5c97",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "calData",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 160,
+        "wires": [
+            [
+                "fc27451dc5956d25"
+            ]
+        ]
     },
     {
         "id": "de9052122283d962",
