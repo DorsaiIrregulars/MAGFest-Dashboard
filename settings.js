@@ -462,6 +462,7 @@ var settings = module.exports = {
      */
     functionGlobalContext: {
         // os:require('os'),
+	ics:require=('ics'),
     },
 
     /** The maximum number of messages nodes will buffer internally as part of their
