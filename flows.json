@@ -379,17 +379,6 @@
         "hidden": false
     },
     {
-        "id": "87f8e49c5062a93e",
-        "type": "ui_group",
-        "name": "Currently On Shift",
-        "tab": "c6309067555db8ae",
-        "order": 2,
-        "disp": true,
-        "width": "13",
-        "collapse": false,
-        "className": ""
-    },
-    {
         "id": "c6309067555db8ae",
         "type": "ui_tab",
         "name": "People",
@@ -470,18 +459,6 @@
         "className": ""
     },
     {
-        "id": "e626f6a18dabe1a1",
-        "type": "websocket-listener",
-        "path": "/ws/dosched",
-        "wholemsg": "false"
-    },
-    {
-        "id": "60abf0ec054534e5",
-        "type": "websocket-listener",
-        "path": "/ws/currentshift",
-        "wholemsg": "false"
-    },
-    {
         "id": "9f0db706b304f79e",
         "type": "mqtt-broker",
         "name": "CloudMQTT",
@@ -522,25 +499,6 @@
         "servername": "",
         "verifyservercert": false,
         "alpnprotocol": ""
-    },
-    {
-        "id": "29c1c5da132c8c41",
-        "type": "ui_tab",
-        "name": "HiddenSelects",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": true
-    },
-    {
-        "id": "b8758cc041357dbe",
-        "type": "ui_group",
-        "name": "Default",
-        "tab": "29c1c5da132c8c41",
-        "order": 1,
-        "disp": false,
-        "width": "6",
-        "collapse": false,
-        "className": ""
     },
     {
         "id": "5eb0bd6b.74b794",
@@ -1628,7 +1586,7 @@
         "type": "debug",
         "z": "89faa08e6ceba514",
         "name": "sheetout",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1686,21 +1644,6 @@
         "x": 580,
         "y": 280,
         "wires": []
-    },
-    {
-        "id": "7658d2828a62c6e3",
-        "type": "http in",
-        "z": "89faa08e6ceba514",
-        "name": "",
-        "url": "/doshift",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 270,
-        "y": 520,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "2b226e356ce68c6c",
@@ -2073,7 +2016,7 @@
         "topic": "topic",
         "topicType": "msg",
         "className": "",
-        "x": 310,
+        "x": 390,
         "y": 120,
         "wires": [
             [
@@ -2156,8 +2099,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 770,
-        "y": 380,
+        "x": 710,
+        "y": 540,
         "wires": []
     },
     {
@@ -2171,12 +2114,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 490,
+        "x": 630,
         "y": 120,
         "wires": [
             [
-                "6fb71ec28f777812",
-                "09da7c5ba2e5843e"
+                "6fb71ec28f777812"
             ]
         ]
     },
@@ -2213,7 +2155,7 @@
         ],
         "outputs": 0,
         "cts": false,
-        "x": 670,
+        "x": 830,
         "y": 120,
         "wires": []
     },
@@ -2262,7 +2204,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 150,
+        "x": 210,
         "y": 120,
         "wires": [
             [
@@ -2281,12 +2223,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 610,
-        "y": 180,
+        "x": 790,
+        "y": 260,
         "wires": [
             [
-                "a82bb41e76785de0",
-                "af04ab5f52785715"
+                "a82bb41e76785de0"
             ]
         ]
     },
@@ -2307,12 +2248,11 @@
         "topic": "",
         "payload": "4",
         "payloadType": "num",
-        "x": 110,
+        "x": 270,
         "y": 200,
         "wires": [
             [
-                "de9052122283d962",
-                "af04ab5f52785715"
+                "43840bc18ca19691"
             ]
         ]
     },
@@ -2326,11 +2266,11 @@
         "module_style": "function",
         "msg_payload": "callback_error",
         "function_name": "createEvents",
-        "x": 830,
-        "y": 160,
+        "x": 810,
+        "y": 320,
         "wires": [
             [
-                "af04ab5f52785715"
+                "683d67e83a540c5c"
             ]
         ]
     },
@@ -2338,17 +2278,16 @@
         "id": "4b38c4c028328143",
         "type": "http in",
         "z": "e0d673d05b136ba1",
-        "name": "getIcal",
-        "url": "/ical/:id",
+        "name": "getIcal_by_optionID",
+        "url": "/ical/id/:id",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
         "x": 90,
-        "y": 440,
+        "y": 260,
         "wires": [
             [
-                "5b0f0793a6ab952d",
-                "c74d4ab816750322"
+                "43840bc18ca19691"
             ]
         ]
     },
@@ -2359,27 +2298,154 @@
         "name": "icalout",
         "statusCode": "",
         "headers": {},
-        "x": 750,
-        "y": 480,
+        "x": 850,
+        "y": 420,
         "wires": []
     },
     {
-        "id": "c74d4ab816750322",
+        "id": "43840bc18ca19691",
         "type": "function",
         "z": "e0d673d05b136ba1",
-        "name": "setupReq",
-        "func": "var msg2 = msg\nmsg2.payload = Number(msg.req.params.id)\nreturn msg2;",
+        "name": "getAllShiftsforUser",
+        "func": "var msg2 = msg\nvar newPayload = new Array()\nvar shiftname = \"\"\nvar shifttime = \"\"\nvar fullsched = flow.get(\"fullsched\")\nvar pos = fullsched.length\nif (msg.req) {\n    msg2.status = { fill: \"blue\",shape:\"dot\", text: \"checking req\"}\n    if (msg.req.params.id) {\n        pos = Number(msg.req.params.id)\n        msg2.status = { fill: \"green\", shape: \"dot\", text: \"got id from req\"}\n    } else if (msg.req.params.full_name) {\n        pos = fullsched.findIndex((value) => {\n            msg2.foundit = value\n            if (value.Firstname == msg.first_name && \n                value.Lastname == msg.last_name) {\n                return true\n            }\n        })\n        msg2.status = { fill: \"green\", shape: \"dot\", text: \"got id from name\" }\n        msg2.schedObj = fullsched[pos]\n        msg2.fullsched = fullsched\n        msg2.schedIndex = pos\n    }\n} else {\n    if (msg.payload != Object() ) {\n        pos = msg.payload\n    } else {\n        msg2.payload = newPayload\n        msg2.status = { fill: \"red\", shape: \"dot\", text: \"no req found\"}\n        return msg2\n    }\n}\nvar schedObj = fullsched[pos]\nif (!schedObj) {\n    msg2.payload = newPayload\n    msg2.status = { fill: \"red\", shape: \"dot\", text: \"no sched found\" }\n    return msg2\n}\n\nif (schedObj._0_00_1) {\n    shiftname = schedObj._0_00_1\n    shifttime = \"Thursday 00:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._4_00_1) {\n    shiftname = schedObj._4_00_1\n    shifttime = \"Thursday 04:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._8_00_1) {\n    shiftname = schedObj._8_00_1\n    shifttime = \"Thursday 08:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._12_00_1) {\n    shiftname = schedObj._12_00_1\n    shifttime = \"Thursday 12:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._16_00_1) {\n    shiftname = schedObj._16_00_1\n    shifttime = \"Thursday 16:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._20_00_1) {\n    shiftname = schedObj._20_00_1\n    shifttime = \"Thursday 20:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._3_00_1) {\n    shiftname = schedObj._3_00_1\n    shifttime = \"Thursday 03:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._6_00_1) {\n    shiftname = schedObj._6_00_1\n    shifttime = \"Thursday 06:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._9_00_1) {\n    shiftname = schedObj._9_00_1\n    shifttime = \"Thursday 09:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._15_00_1) {\n    shiftname = schedObj._15_00_1\n    shifttime = \"Thursday 15:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._18_00_1) {\n    shiftname = schedObj._18_00_1\n    shifttime = \"Thursday 18:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._21_00_1) {\n    shiftname = schedObj._21_00_1\n    shifttime = \"Thursday 21:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._0_00_2) {\n    shiftname = schedObj._0_00_2\n    shifttime = \"Friday 00:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._4_00_2) {\n    shiftname = schedObj._4_00_2\n    shifttime = \"Friday 04:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._8_00_2) {\n    shiftname = schedObj._8_00_2\n    shifttime = \"Friday 08:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._12_00_2) {\n    shiftname = schedObj._12_00_2\n    shifttime = \"Friday 12:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._16_00_2) {\n    shiftname = schedObj._16_00_2\n    shifttime = \"Friday 16:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._20_00_2) {\n    shiftname = schedObj._20_00_2\n    shifttime = \"Friday 20:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._3_00_2) {\n    shiftname = schedObj._3_00_2\n    shifttime = \"Friday 03:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._6_00_2) {\n    shiftname = schedObj._6_00_2\n    shifttime = \"Friday 06:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._9_00_2) {\n    shiftname = schedObj._9_00_2\n    shifttime = \"Friday 09:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._15_00_2) {\n    shiftname = schedObj._15_00_2\n    shifttime = \"Friday 15:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._18_00_2) {\n    shiftname = schedObj._18_00_2\n    shifttime = \"Friday 18:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._21_00_2) {\n    shiftname = schedObj._21_00_2\n    shifttime = \"Friday 21:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._0_00_3) {\n    shiftname = schedObj._0_00_3\n    shifttime = \"Saturday 00:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._4_00_3) {\n    shiftname = schedObj._4_00_3\n    shifttime = \"Saturday 04:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._8_00_3) {\n    shiftname = schedObj._8_00_3\n    shifttime = \"Saturday 08:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._12_00_3) {\n    shiftname = schedObj._12_00_3\n    shifttime = \"Saturday 12:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._16_00_3) {\n    shiftname = schedObj._16_00_3\n    shifttime = \"Saturday 16:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._20_00_3) {\n    shiftname = schedObj._20_00_3\n    shifttime = \"Saturday 20:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._3_00_3) {\n    shiftname = schedObj._3_00_3\n    shifttime = \"Saturday 03:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._6_00_3) {\n    shiftname = schedObj._6_00_3\n    shifttime = \"Saturday 06:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._9_00_3) {\n    shiftname = schedObj._9_00_3\n    shifttime = \"Saturday 09:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._15_00_3) {\n    shiftname = schedObj._15_00_3\n    shifttime = \"Saturday 15:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._18_00_3) {\n    shiftname = schedObj._18_00_3\n    shifttime = \"Saturday 18:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._21_00_3) {\n    shiftname = schedObj._21_00_3\n    shifttime = \"Saturday 21:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._0_00_4) {\n    shiftname = schedObj._0_00_4\n    shifttime = \"Sunday 00:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._4_00_4) {\n    shiftname = schedObj._4_00_4\n    shifttime = \"Sunday 04:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._8_00_4) {\n    shiftname = schedObj._8_00_4\n    shifttime = \"Sunday 08:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._12_00_4) {\n    shiftname = schedObj._12_00_4\n    shifttime = \"Sunday 12:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._16_00_4) {\n    shiftname = schedObj._16_00_4\n    shifttime = \"Sunday 16:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._20_00_4) {\n    shiftname = schedObj._20_00_4\n    shifttime = \"Sunday 20:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._3_00_4) {\n    shiftname = schedObj._3_00_4\n    shifttime = \"Sunday 03:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._6_00_4) {\n    shiftname = schedObj._6_00_4\n    shifttime = \"Sunday 06:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._9_00_4) {\n    shiftname = schedObj._9_00_4\n    shifttime = \"Sunday 09:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._15_00_4) {\n    shiftname = schedObj._15_00_4\n    shifttime = \"Sunday 15:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._18_00_4) {\n    shiftname = schedObj._18_00_4\n    shifttime = \"Sunday 18:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._21_00_4) {\n    shiftname = schedObj._21_00_4\n    shifttime = \"Sunday 21:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._0_00) {\n    shiftname = schedObj._0_00\n    shifttime = \"Wednesday 00:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._4_00) {\n    shiftname = schedObj._4_00\n    shifttime = \"Wednesday 04:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._8_00) {\n    shiftname = schedObj._8_00\n    shifttime = \"Wednesday 08:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._12_00) {\n    shiftname = schedObj._12_00\n    shifttime = \"Wednesday 12:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._16_00) {\n    shiftname = schedObj._16_00\n    shifttime = \"Wednesday 16:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._20_00) {\n    shiftname = schedObj._20_00\n    shifttime = \"Wednesday 20:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._3_00) {\n    shiftname = schedObj._3_00\n    shifttime = \"Wednesday 03:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._6_00) {\n    shiftname = schedObj._6_00\n    shifttime = \"Wednesday 06:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._9_00) {\n    shiftname = schedObj._9_00\n    shifttime = \"Wednesday 09:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._15_00) {\n    shiftname = schedObj._15_00\n    shifttime = \"Wednesday 15:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._18_00) {\n    shiftname = schedObj._18_00\n    shifttime = \"Wednesday 18:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nif (schedObj._21_00) {\n    shiftname = schedObj._21_00\n    shifttime = \"Wednesday 21:00\"\n    newPayload.push({ shiftname, shifttime })\n}\nmsg2.person = {\n    fullName: schedObj.Firstname+\" \"+schedObj.Lastname,\n    emailAddr: schedObj.Email\n}\nmsg2.payload = newPayload\nreturn msg2\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 280,
+        "x": 430,
+        "y": 260,
+        "wires": [
+            [
+                "11a58a13d7c42444"
+            ]
+        ]
+    },
+    {
+        "id": "63e4490496c071c2",
+        "type": "http in",
+        "z": "e0d673d05b136ba1",
+        "name": "getIcal_by_name",
+        "url": "/ical/name/:full_name",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
         "y": 320,
         "wires": [
             [
-                "de9052122283d962",
+                "3b885a61918c11a6"
+            ]
+        ]
+    },
+    {
+        "id": "683d67e83a540c5c",
+        "type": "switch",
+        "z": "e0d673d05b136ba1",
+        "name": "",
+        "property": "res",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 690,
+        "y": 440,
+        "wires": [
+            [
+                "5b0f0793a6ab952d"
+            ],
+            [
                 "af04ab5f52785715"
+            ]
+        ]
+    },
+    {
+        "id": "3b885a61918c11a6",
+        "type": "function",
+        "z": "e0d673d05b136ba1",
+        "name": "parseName",
+        "func": "let msg2 = msg;\n\nlet full_name = msg.req.params.full_name\n\nlet fullname = full_name.split(' ')\nmsg2.fullname = fullname\n\nif (fullname.length > 2) {\n    msg2.last_name = fullname[fullname.length - 1]\n    let firstname = \"\"\n    for (let i = 0; i <= (fullname.length - 2); i++) {\n        firstname = firstname.concat(\" \", fullname[i])\n    }\n    msg2.first_name = firstname.trim()\n} else {\n    msg2.last_name = fullname[1]\n    msg2.first_name = fullname[0]\n}\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 320,
+        "wires": [
+            [
+                "43840bc18ca19691"
+            ]
+        ]
+    },
+    {
+        "id": "11a58a13d7c42444",
+        "type": "switch",
+        "z": "e0d673d05b136ba1",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 490,
+        "y": 320,
+        "wires": [
+            [
+                "09da7c5ba2e5843e"
+            ],
+            [
+                "49ff4130b24a6ee4"
+            ]
+        ]
+    },
+    {
+        "id": "49ff4130b24a6ee4",
+        "type": "change",
+        "z": "e0d673d05b136ba1",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Not Found",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "stauscode",
+                "pt": "msg",
+                "to": "404",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 360,
+        "wires": [
+            [
+                "5b0f0793a6ab952d"
             ]
         ]
     },
