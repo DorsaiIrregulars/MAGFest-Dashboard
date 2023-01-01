@@ -16,6 +16,7 @@
     ],
     "dependencies": {
         "feedparser": "2.2.10",
+        "ics": "latest",
         "nano": "8.2.2",
         "node-red": "^3.0.2",
         "node-red-contrib-actionflows": "latest",
@@ -26,6 +27,7 @@
         "node-red-contrib-fs": "~1.4.1",
         "node-red-contrib-mongodb4": "latest",
         "node-red-contrib-mongoql": "latest",
+        "node-red-contrib-npm": "~1.0.2",
         "node-red-contrib-postgresql": "latest",
         "node-red-contrib-qrcode-generator": "latest",
         "node-red-contrib-require": "~0.1.1",
@@ -43,7 +45,6 @@
         "node-red-node-ui-list": "latest",
         "node-red-node-ui-table": "^0.4.3",
         "node-red-node-web-nodes": "~0.3.2",
-	"ics": "latest",
         "redis": "3.0.2",
         "when": "3.7.8"
     }
