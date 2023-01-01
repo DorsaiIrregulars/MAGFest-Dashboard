@@ -524,6 +524,25 @@
         "alpnprotocol": ""
     },
     {
+        "id": "29c1c5da132c8c41",
+        "type": "ui_tab",
+        "name": "HiddenSelects",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": true
+    },
+    {
+        "id": "b8758cc041357dbe",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "29c1c5da132c8c41",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "5eb0bd6b.74b794",
         "type": "function",
         "z": "2924702c.b33a7",
@@ -2137,8 +2156,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 620,
-        "y": 300,
+        "x": 770,
+        "y": 380,
         "wires": []
     },
     {
@@ -2262,11 +2281,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
-        "y": 200,
+        "x": 610,
+        "y": 180,
         "wires": [
             [
-                "a82bb41e76785de0"
+                "a82bb41e76785de0",
+                "af04ab5f52785715"
             ]
         ]
     },
@@ -2287,11 +2307,12 @@
         "topic": "",
         "payload": "4",
         "payloadType": "num",
-        "x": 130,
-        "y": 240,
+        "x": 110,
+        "y": 200,
         "wires": [
             [
-                "de9052122283d962"
+                "de9052122283d962",
+                "af04ab5f52785715"
             ]
         ]
     },
@@ -2305,8 +2326,8 @@
         "module_style": "function",
         "msg_payload": "callback_error",
         "function_name": "createEvents",
-        "x": 610,
-        "y": 240,
+        "x": 830,
+        "y": 160,
         "wires": [
             [
                 "af04ab5f52785715"
@@ -2322,24 +2343,45 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 110,
-        "y": 340,
+        "x": 90,
+        "y": 440,
         "wires": [
             [
-                "af04ab5f52785715"
+                "5b0f0793a6ab952d",
+                "c74d4ab816750322"
             ]
         ]
     },
     {
-        "id": "694ef215488e9333",
+        "id": "5b0f0793a6ab952d",
         "type": "http response",
         "z": "e0d673d05b136ba1",
-        "name": "",
+        "name": "icalout",
         "statusCode": "",
         "headers": {},
-        "x": 390,
-        "y": 400,
+        "x": 750,
+        "y": 480,
         "wires": []
+    },
+    {
+        "id": "c74d4ab816750322",
+        "type": "function",
+        "z": "e0d673d05b136ba1",
+        "name": "setupReq",
+        "func": "var msg2 = msg\nmsg2.payload = Number(msg.req.params.id)\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 320,
+        "wires": [
+            [
+                "de9052122283d962",
+                "af04ab5f52785715"
+            ]
+        ]
     },
     {
         "id": "53035f704bb7e6be",
