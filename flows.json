@@ -2247,8 +2247,7 @@
         "y": 120,
         "wires": [
             [
-                "de9052122283d962",
-                "af04ab5f52785715"
+                "de9052122283d962"
             ]
         ]
     },
@@ -2257,7 +2256,7 @@
         "type": "function",
         "z": "e0d673d05b136ba1",
         "name": "GenerateICS",
-        "func": "const ics = global.ics\nvar eventList = new Array()\nvar magYear = 2023\nvar magMonth = 1\nvar magDay = 0\nvar msg2 = msg;\nmsg2.origPayload = msg.payload\n\n\nmsg.payload.forEach(shiftData => {\n    var shiftStartTime = shiftData.shifttime.split(\" \")\n    var startHour = shiftStartTime[1].split(\":\")[0]\n    switch (shiftStartTime[0]) {\n        case \"Wednesday\" : \n            magDay = 4\n            break\n        case \"Thursday\" :\n            magDay = 5\n            break\n        case \"Friday\" :\n            magDay = 6\n            break\n        case \"Saturday\" :\n            magDay = 7\n            break\n        case \"Sunday\" :\n            magDay = 8\n            break\n    }\n    var shiftDur = 3\n    if (shiftData.shiftname.includes(\"GL\")) {\n        shiftDur = 4\n    }\n    eventList.push({\n        start: [magYear, magMonth, magDay, startHour, 0],\n        duration: { hours: shiftDur, minutes: 0 },\n        title: shiftData.shiftname,\n        status: 'CONFIRMED',\n        busyStatus: 'BUSY',\n        organizer: { name: msg.person.fullName, email: msg.person.emailAddr },\n    })\n})\n\nmsg2.payload = eventList\n\nreturn msg2;",
+        "func": "const ics = global.ics\nvar eventList = new Array()\nvar magYear = 2023\nvar magMonth = 1\nvar magDay = 0\nvar msg2 = msg;\nmsg2.origPayload = msg.payload\n\n\nmsg.payload.forEach(shiftData => {\n    var shiftStartTime = shiftData.shifttime.split(\" \")\n    var startHour = shiftStartTime[1].split(\":\")[0]\n    switch (shiftStartTime[0]) {\n        case \"Wednesday\" : \n            magDay = 4\n            break\n        case \"Thursday\" :\n            magDay = 5\n            break\n        case \"Friday\" :\n            magDay = 6\n            break\n        case \"Saturday\" :\n            magDay = 7\n            break\n        case \"Sunday\" :\n            magDay = 8\n            break\n    }\n    var shiftDur = 3\n    if (shiftData.shiftname.includes(\"GL\")) {\n        shiftDur = 4\n    }\n    eventList.push({\n        start: [magYear, magMonth, magDay, Number(startHour), 0],\n        duration: { hours: shiftDur, minutes: 0 },\n        title: shiftData.shiftname,\n        status: 'CONFIRMED',\n        busyStatus: 'BUSY',\n        organizer: { name: msg.person.fullName, email: msg.person.emailAddr },\n    })\n})\n\nmsg2.payload = eventList\n\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2267,7 +2266,7 @@
         "y": 200,
         "wires": [
             [
-                "af04ab5f52785715"
+                "a82bb41e76785de0"
             ]
         ]
     },
@@ -2288,13 +2287,59 @@
         "topic": "",
         "payload": "4",
         "payloadType": "num",
-        "x": 210,
-        "y": 260,
+        "x": 130,
+        "y": 240,
         "wires": [
             [
                 "de9052122283d962"
             ]
         ]
+    },
+    {
+        "id": "a82bb41e76785de0",
+        "type": "npm",
+        "z": "e0d673d05b136ba1",
+        "name": "",
+        "func": "// NPM module exposed as variable, npm_module\nreturn npm_module(msg.payload);",
+        "npm_module": "ics",
+        "module_style": "function",
+        "msg_payload": "callback_error",
+        "function_name": "createEvents",
+        "x": 610,
+        "y": 240,
+        "wires": [
+            [
+                "af04ab5f52785715"
+            ]
+        ]
+    },
+    {
+        "id": "4b38c4c028328143",
+        "type": "http in",
+        "z": "e0d673d05b136ba1",
+        "name": "getIcal",
+        "url": "/ical/:id",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 340,
+        "wires": [
+            [
+                "af04ab5f52785715"
+            ]
+        ]
+    },
+    {
+        "id": "694ef215488e9333",
+        "type": "http response",
+        "z": "e0d673d05b136ba1",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 390,
+        "y": 400,
+        "wires": []
     },
     {
         "id": "53035f704bb7e6be",
