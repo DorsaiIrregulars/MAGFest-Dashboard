@@ -2095,11 +2095,11 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 710,
+        "x": 730,
         "y": 540,
         "wires": []
     },
@@ -2217,7 +2217,7 @@
         "type": "function",
         "z": "e0d673d05b136ba1",
         "name": "GenerateICS",
-        "func": "const ics = global.ics\nvar eventList = new Array()\nvar magYear = 2023\nvar magMonth = 1\nvar magDay = 0\nvar msg2 = msg;\nmsg2.origPayload = msg.payload\n\n\nmsg.payload.forEach(shiftData => {\n    var shiftStartTime = shiftData.shifttime.split(\" \")\n    var startHour = shiftStartTime[1].split(\":\")[0]\n    switch (shiftStartTime[0]) {\n        case \"Wednesday\" : \n            magDay = 4\n            break\n        case \"Thursday\" :\n            magDay = 5\n            break\n        case \"Friday\" :\n            magDay = 6\n            break\n        case \"Saturday\" :\n            magDay = 7\n            break\n        case \"Sunday\" :\n            magDay = 8\n            break\n    }\n    var shiftDur = 3\n    if (shiftData.shiftname.includes(\"GL\")) {\n        shiftDur = 4\n    }\n    eventList.push({\n        start: [magYear, magMonth, magDay, Number(startHour), 0],\n        startInputType: \"local\",\n        startOutputType: \"local\",\n        duration: { hours: shiftDur, minutes: 0 },\n        title: shiftData.shiftname,\n        status: 'CONFIRMED',\n        busyStatus: 'BUSY',\n        organizer: { name: msg.person.fullName, email: msg.person.emailAddr },\n        calName: '{msg.person.fullname} FestSec Schedule'\n    })\n})\n\nmsg2.payload = eventList\n\nreturn msg2;",
+        "func": "const ics = global.ics\nvar eventList = new Array()\nvar magYear = 2023\nvar magMonth = 1\nvar magDay = 0\nvar msg2 = msg;\nmsg2.origPayload = msg.payload\n\n\nmsg.payload.forEach(shiftData => {\n    var shiftStartTime = shiftData.shifttime.split(\" \")\n    var startHour = shiftStartTime[1].split(\":\")[0]\n    switch (shiftStartTime[0]) {\n        case \"Wednesday\" : \n            magDay = 4\n            break\n        case \"Thursday\" :\n            magDay = 5\n            break\n        case \"Friday\" :\n            magDay = 6\n            break\n        case \"Saturday\" :\n            magDay = 7\n            break\n        case \"Sunday\" :\n            magDay = 8\n            break\n    }\n    var shiftDur = 3\n    if (shiftData.shiftname.includes(\"GL\")) {\n        shiftDur = 4\n    }\n    eventList.push({\n        start: [magYear, magMonth, magDay, Number(startHour), 0],\n        startInputType: \"local\",\n        startOutputType: \"local\",\n        duration: { hours: shiftDur, minutes: 0 },\n        title: shiftData.shiftname,\n        status: 'CONFIRMED',\n        busyStatus: 'BUSY',\n        organizer: { name: msg.person.fullName, email: msg.person.emailAddr },\n        calName: (msg.person.fullname) + \"FestSec Schedule\"\n    })\n})\n\nmsg2.payload = eventList\n\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2297,7 +2297,9 @@
         "z": "e0d673d05b136ba1",
         "name": "icalout",
         "statusCode": "",
-        "headers": {},
+        "headers": {
+            "content-type": "text/calendar"
+        },
         "x": 890,
         "y": 360,
         "wires": []
@@ -2360,7 +2362,8 @@
         "y": 400,
         "wires": [
             [
-                "5b0f0793a6ab952d"
+                "5b0f0793a6ab952d",
+                "af04ab5f52785715"
             ],
             [
                 "af04ab5f52785715"
@@ -2501,7 +2504,6 @@
         "y": 400,
         "wires": [
             [
-                "af04ab5f52785715",
                 "a82bb41e76785de0"
             ]
         ]
