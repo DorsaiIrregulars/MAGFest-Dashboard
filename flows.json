@@ -2217,14 +2217,14 @@
         "type": "function",
         "z": "e0d673d05b136ba1",
         "name": "GenerateICS",
-        "func": "const ics = global.ics\nvar eventList = new Array()\nvar magYear = 2023\nvar magMonth = 1\nvar magDay = 0\nvar msg2 = msg;\nmsg2.origPayload = msg.payload\n\n\nmsg.payload.forEach(shiftData => {\n    var shiftStartTime = shiftData.shifttime.split(\" \")\n    var startHour = shiftStartTime[1].split(\":\")[0]\n    switch (shiftStartTime[0]) {\n        case \"Wednesday\" : \n            magDay = 4\n            break\n        case \"Thursday\" :\n            magDay = 5\n            break\n        case \"Friday\" :\n            magDay = 6\n            break\n        case \"Saturday\" :\n            magDay = 7\n            break\n        case \"Sunday\" :\n            magDay = 8\n            break\n    }\n    var shiftDur = 3\n    if (shiftData.shiftname.includes(\"GL\")) {\n        shiftDur = 4\n    }\n    eventList.push({\n        start: [magYear, magMonth, magDay, Number(startHour), 0],\n        duration: { hours: shiftDur, minutes: 0 },\n        title: shiftData.shiftname,\n        status: 'CONFIRMED',\n        busyStatus: 'BUSY',\n        organizer: { name: msg.person.fullName, email: msg.person.emailAddr },\n    })\n})\n\nmsg2.payload = eventList\n\nreturn msg2;",
+        "func": "const ics = global.ics\nvar eventList = new Array()\nvar magYear = 2023\nvar magMonth = 1\nvar magDay = 0\nvar msg2 = msg;\nmsg2.origPayload = msg.payload\n\n\nmsg.payload.forEach(shiftData => {\n    var shiftStartTime = shiftData.shifttime.split(\" \")\n    var startHour = shiftStartTime[1].split(\":\")[0]\n    switch (shiftStartTime[0]) {\n        case \"Wednesday\" : \n            magDay = 4\n            break\n        case \"Thursday\" :\n            magDay = 5\n            break\n        case \"Friday\" :\n            magDay = 6\n            break\n        case \"Saturday\" :\n            magDay = 7\n            break\n        case \"Sunday\" :\n            magDay = 8\n            break\n    }\n    var shiftDur = 3\n    if (shiftData.shiftname.includes(\"GL\")) {\n        shiftDur = 4\n    }\n    eventList.push({\n        start: [magYear, magMonth, magDay, Number(startHour), 0],\n        startInputType: \"local\",\n        startOutputType: \"local\",\n        duration: { hours: shiftDur, minutes: 0 },\n        title: shiftData.shiftname,\n        status: 'CONFIRMED',\n        busyStatus: 'BUSY',\n        organizer: { name: msg.person.fullName, email: msg.person.emailAddr },\n        calName: '{msg.person.fullname} FestSec Schedule'\n    })\n})\n\nmsg2.payload = eventList\n\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 790,
-        "y": 260,
+        "x": 630,
+        "y": 340,
         "wires": [
             [
                 "a82bb41e76785de0"
@@ -2248,11 +2248,11 @@
         "topic": "",
         "payload": "4",
         "payloadType": "num",
-        "x": 270,
-        "y": 200,
+        "x": 130,
+        "y": 540,
         "wires": [
             [
-                "43840bc18ca19691"
+                "60251a7403e4e05e"
             ]
         ]
     },
@@ -2266,8 +2266,8 @@
         "module_style": "function",
         "msg_payload": "callback_error",
         "function_name": "createEvents",
-        "x": 810,
-        "y": 320,
+        "x": 570,
+        "y": 400,
         "wires": [
             [
                 "683d67e83a540c5c"
@@ -2298,8 +2298,8 @@
         "name": "icalout",
         "statusCode": "",
         "headers": {},
-        "x": 850,
-        "y": 420,
+        "x": 890,
+        "y": 360,
         "wires": []
     },
     {
@@ -2356,8 +2356,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 690,
-        "y": 440,
+        "x": 710,
+        "y": 400,
         "wires": [
             [
                 "5b0f0793a6ab952d"
@@ -2395,10 +2395,10 @@
         "propertyType": "msg",
         "rules": [
             {
-                "t": "nempty"
+                "t": "empty"
             },
             {
-                "t": "else"
+                "t": "nempty"
             }
         ],
         "checkall": "true",
@@ -2408,10 +2408,10 @@
         "y": 320,
         "wires": [
             [
-                "09da7c5ba2e5843e"
+                "49ff4130b24a6ee4"
             ],
             [
-                "49ff4130b24a6ee4"
+                "09da7c5ba2e5843e"
             ]
         ]
     },
@@ -2441,11 +2441,68 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 640,
-        "y": 360,
+        "x": 680,
+        "y": 220,
         "wires": [
             [
                 "5b0f0793a6ab952d"
+            ]
+        ]
+    },
+    {
+        "id": "a1e06b7e7f43abbb",
+        "type": "http in",
+        "z": "e0d673d05b136ba1",
+        "name": "getIcal_all",
+        "url": "/ical/fullsched",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 440,
+        "wires": [
+            [
+                "60251a7403e4e05e"
+            ]
+        ]
+    },
+    {
+        "id": "60251a7403e4e05e",
+        "type": "function",
+        "z": "e0d673d05b136ba1",
+        "name": "getAllShifts",
+        "func": "var msg2 = msg\nvar shiftname = \"\"\nvar shifttime = \"\"\nvar fullsched = flow.get(\"fullsched\")\nmsg2.payload = new Array()\n\nfullsched.shift()\n\nfullsched.forEach((schedObj) => {\n    var newPayload = new Array()\n    let person = {\n        fullName: schedObj.Firstname + \" \" + schedObj.Lastname,\n        emailAddr: schedObj.Email\n    }\n    if (schedObj._0_00_1) {\n        shiftname = schedObj._0_00_1\n        shifttime = \"Thursday 00:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._4_00_1) {\n        shiftname = schedObj._4_00_1\n        shifttime = \"Thursday 04:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._8_00_1) {\n        shiftname = schedObj._8_00_1\n        shifttime = \"Thursday 08:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._12_00_1) {\n        shiftname = schedObj._12_00_1\n        shifttime = \"Thursday 12:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._16_00_1) {\n        shiftname = schedObj._16_00_1\n        shifttime = \"Thursday 16:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._20_00_1) {\n        shiftname = schedObj._20_00_1\n        shifttime = \"Thursday 20:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._3_00_1) {\n        shiftname = schedObj._3_00_1\n        shifttime = \"Thursday 03:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._6_00_1) {\n        shiftname = schedObj._6_00_1\n        shifttime = \"Thursday 06:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._9_00_1) {\n        shiftname = schedObj._9_00_1\n        shifttime = \"Thursday 09:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._15_00_1) {\n        shiftname = schedObj._15_00_1\n        shifttime = \"Thursday 15:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._18_00_1) {\n        shiftname = schedObj._18_00_1\n        shifttime = \"Thursday 18:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._21_00_1) {\n        shiftname = schedObj._21_00_1\n        shifttime = \"Thursday 21:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._0_00_2) {\n        shiftname = schedObj._0_00_2\n        shifttime = \"Friday 00:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._4_00_2) {\n        shiftname = schedObj._4_00_2\n        shifttime = \"Friday 04:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._8_00_2) {\n        shiftname = schedObj._8_00_2\n        shifttime = \"Friday 08:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._12_00_2) {\n        shiftname = schedObj._12_00_2\n        shifttime = \"Friday 12:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._16_00_2) {\n        shiftname = schedObj._16_00_2\n        shifttime = \"Friday 16:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._20_00_2) {\n        shiftname = schedObj._20_00_2\n        shifttime = \"Friday 20:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._3_00_2) {\n        shiftname = schedObj._3_00_2\n        shifttime = \"Friday 03:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._6_00_2) {\n        shiftname = schedObj._6_00_2\n        shifttime = \"Friday 06:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._9_00_2) {\n        shiftname = schedObj._9_00_2\n        shifttime = \"Friday 09:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._15_00_2) {\n        shiftname = schedObj._15_00_2\n        shifttime = \"Friday 15:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._18_00_2) {\n        shiftname = schedObj._18_00_2\n        shifttime = \"Friday 18:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._21_00_2) {\n        shiftname = schedObj._21_00_2\n        shifttime = \"Friday 21:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._0_00_3) {\n        shiftname = schedObj._0_00_3\n        shifttime = \"Saturday 00:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._4_00_3) {\n        shiftname = schedObj._4_00_3\n        shifttime = \"Saturday 04:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._8_00_3) {\n        shiftname = schedObj._8_00_3\n        shifttime = \"Saturday 08:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._12_00_3) {\n        shiftname = schedObj._12_00_3\n        shifttime = \"Saturday 12:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._16_00_3) {\n        shiftname = schedObj._16_00_3\n        shifttime = \"Saturday 16:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._20_00_3) {\n        shiftname = schedObj._20_00_3\n        shifttime = \"Saturday 20:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._3_00_3) {\n        shiftname = schedObj._3_00_3\n        shifttime = \"Saturday 03:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._6_00_3) {\n        shiftname = schedObj._6_00_3\n        shifttime = \"Saturday 06:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._9_00_3) {\n        shiftname = schedObj._9_00_3\n        shifttime = \"Saturday 09:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._15_00_3) {\n        shiftname = schedObj._15_00_3\n        shifttime = \"Saturday 15:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._18_00_3) {\n        shiftname = schedObj._18_00_3\n        shifttime = \"Saturday 18:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._21_00_3) {\n        shiftname = schedObj._21_00_3\n        shifttime = \"Saturday 21:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._0_00_4) {\n        shiftname = schedObj._0_00_4\n        shifttime = \"Sunday 00:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._4_00_4) {\n        shiftname = schedObj._4_00_4\n        shifttime = \"Sunday 04:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._8_00_4) {\n        shiftname = schedObj._8_00_4\n        shifttime = \"Sunday 08:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._12_00_4) {\n        shiftname = schedObj._12_00_4\n        shifttime = \"Sunday 12:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._16_00_4) {\n        shiftname = schedObj._16_00_4\n        shifttime = \"Sunday 16:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._20_00_4) {\n        shiftname = schedObj._20_00_4\n        shifttime = \"Sunday 20:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._3_00_4) {\n        shiftname = schedObj._3_00_4\n        shifttime = \"Sunday 03:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._6_00_4) {\n        shiftname = schedObj._6_00_4\n        shifttime = \"Sunday 06:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._9_00_4) {\n        shiftname = schedObj._9_00_4\n        shifttime = \"Sunday 09:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._15_00_4) {\n        shiftname = schedObj._15_00_4\n        shifttime = \"Sunday 15:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._18_00_4) {\n        shiftname = schedObj._18_00_4\n        shifttime = \"Sunday 18:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._21_00_4) {\n        shiftname = schedObj._21_00_4\n        shifttime = \"Sunday 21:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._0_00) {\n        shiftname = schedObj._0_00\n        shifttime = \"Wednesday 00:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._4_00) {\n        shiftname = schedObj._4_00\n        shifttime = \"Wednesday 04:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._8_00) {\n        shiftname = schedObj._8_00\n        shifttime = \"Wednesday 08:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._12_00) {\n        shiftname = schedObj._12_00\n        shifttime = \"Wednesday 12:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._16_00) {\n        shiftname = schedObj._16_00\n        shifttime = \"Wednesday 16:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._20_00) {\n        shiftname = schedObj._20_00\n        shifttime = \"Wednesday 20:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._3_00) {\n        shiftname = schedObj._3_00\n        shifttime = \"Wednesday 03:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._6_00) {\n        shiftname = schedObj._6_00\n        shifttime = \"Wednesday 06:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._9_00) {\n        shiftname = schedObj._9_00\n        shifttime = \"Wednesday 09:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._15_00) {\n        shiftname = schedObj._15_00\n        shifttime = \"Wednesday 15:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._18_00) {\n        shiftname = schedObj._18_00\n        shifttime = \"Wednesday 18:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    if (schedObj._21_00) {\n        shiftname = schedObj._21_00\n        shifttime = \"Wednesday 21:00\"\n        newPayload.push({ shiftname, shifttime, person })\n    }\n    msg2.payload.push(newPayload)\n})\n\nreturn msg2\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 440,
+        "wires": [
+            [
+                "af04ab5f52785715",
+                "a7555e2b8d80499e"
+            ]
+        ]
+    },
+    {
+        "id": "a7555e2b8d80499e",
+        "type": "function",
+        "z": "e0d673d05b136ba1",
+        "name": "GenerateICS",
+        "func": "const ics = global.ics\nvar eventList = new Array()\nvar magYear = 2023\nvar magMonth = 1\nvar magDay = 0\nvar msg2 = msg;\nmsg2.origPayload = msg.payload\n\n\nmsg.payload.forEach(personData => {\n    personData.forEach(shiftData => {\n    var shiftStartTime = shiftData.shifttime.split(\" \")\n    var startHour = shiftStartTime[1].split(\":\")[0]\n    switch (shiftStartTime[0]) {\n        case \"Wednesday\" : \n            magDay = 4\n            break\n        case \"Thursday\" :\n            magDay = 5\n            break\n        case \"Friday\" :\n            magDay = 6\n            break\n        case \"Saturday\" :\n            magDay = 7\n            break\n        case \"Sunday\" :\n            magDay = 8\n            break\n    }\n    var shiftDur = 3\n    if (shiftData.shiftname.includes(\"GL\")) {\n        shiftDur = 4\n    }\n    if (!(shiftData.shiftname.includes(\"CO\")) && (!(shiftData.shiftname.includes(\"XO\")))) {\n        eventList.push({\n            start: [magYear, magMonth, magDay, Number(startHour), 0],\n            startInputType: \"local\",\n            startOutputType: \"local\",\n            duration: { hours: shiftDur, minutes: 0 },\n            title: (shiftData.person.fullName+\" \"+shiftData.shiftname),\n            status: 'CONFIRMED',\n            busyStatus: 'BUSY',\n            organizer: { name: shiftData.person.fullName, email: shiftData.person.emailAddr },\n            calName: 'MAGFest FestSec Schedule'\n        })\n    }\n})})\n\nmsg2.payload = eventList\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 400,
+        "wires": [
+            [
+                "af04ab5f52785715",
+                "a82bb41e76785de0"
             ]
         ]
     },
