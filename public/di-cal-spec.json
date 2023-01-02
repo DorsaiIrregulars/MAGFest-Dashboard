@@ -1,0 +1,7 @@
+{
+  "url": "https://di-dash.herokuapp.com/ical/fullsched",
+  "skin": "dhtmlxscheduler_flat.css",
+  "tab": "day",
+  "controls": [],
+  "tabs": []
+}
