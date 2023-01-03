@@ -17,6 +17,7 @@
     "dependencies": {
         "feedparser": "2.2.10",
         "ics": "latest",
+	"mmoment": "latest",
         "nano": "8.2.2",
         "node-red": "^3.0.2",
         "node-red-contrib-actionflows": "latest",
