@@ -462,8 +462,8 @@ var settings = module.exports = {
      */
     functionGlobalContext: {
         // os:require('os'),
-	ics:require('ics'),
-	moment:require('moment'),
+        ics:require('ics'),
+        moment:require('moment'),
     },
 
     /** The maximum number of messages nodes will buffer internally as part of their
@@ -484,7 +484,7 @@ var settings = module.exports = {
     ui: { path: "/ui" },
 
     /** Colourise the console output of the debug node */
-    //debugUseColors: true,
+    debugUseColors: true,
 
     /** The maximum length, in characters, of any message sent to the debug sidebar tab */
     // debugMaxLength: 1000,
