@@ -1632,7 +1632,7 @@
                 "field": "ShiftName",
                 "title": "Post",
                 "width": "40%",
-                "align": "right",
+                "align": "left",
                 "formatter": "plaintext",
                 "formatterParams": {
                     "target": "_blank"
@@ -1824,7 +1824,7 @@
         "type": "debug",
         "z": "25fcc8c591bf5c97",
         "name": "didash",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
