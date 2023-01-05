@@ -1803,7 +1803,7 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "removeEmptyItems",
-        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != undefined && \n        el.Firstname != undefined) { return el };\n});\nvar newPayload2 = newPayload.filter(function(el) {\n    if (el.ShiftName.indexOf(\"GL\") > 0 || \n        el.ShiftName.indexOf(\"DO\") > 0 ||\n        el.ShiftName.indexOf(\"CO\") > 0 ||\n        el.ShiftName.indexOf(\"XO\") > 0 ) {return el}\n})\nmsg2.payload = newPayload2\nmsg2.topic = \"onshift\"\nreturn msg2;",
+        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != undefined && \n        el.Firstname != undefined) { return el };\n});\nmsg2.payload = newPayload\nmsg2.topic = \"onshift\"\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1814,8 +1814,8 @@
         "wires": [
             [
                 "bdfe4e9e09512596",
-                "29515021ebbfb9e9",
-                "193af0ee148c96ef"
+                "193af0ee148c96ef",
+                "025ea7424a3af85d"
             ]
         ]
     },
@@ -1832,7 +1832,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 930,
+        "x": 910,
         "y": 320,
         "wires": []
     },
@@ -1960,8 +1960,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 980,
-        "y": 160,
+        "x": 760,
+        "y": 120,
         "wires": []
     },
     {
@@ -1988,6 +1988,25 @@
         "wires": [
             [
                 "fc27451dc5956d25"
+            ]
+        ]
+    },
+    {
+        "id": "025ea7424a3af85d",
+        "type": "function",
+        "z": "25fcc8c591bf5c97",
+        "name": "COXODOGLOnly",
+        "func": "var msg2 = msg\nvar newPayload2 = msg.payload.filter(function (el) {\n    if (el.ShiftName.indexOf(\"GL\") > 0 ||\n        el.ShiftName.indexOf(\"DO\") > 0 ||\n        el.ShiftName.indexOf(\"CO\") > 0 ||\n        el.ShiftName.indexOf(\"XO\") > 0) { return el }\n})\nmsg2.payload = newPayload2\nmsg2.topic = \"onshift\"\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 380,
+        "wires": [
+            [
+                "29515021ebbfb9e9"
             ]
         ]
     },
