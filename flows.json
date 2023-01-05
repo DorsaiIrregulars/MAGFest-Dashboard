@@ -1803,7 +1803,7 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "removeEmptyItems",
-        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != undefined && \n        el.Firstname != undefined) { return el };\n});\nvar newPayload2 = newPayload.filter(function(el) {\n    if (el.ShiftName.indexOf(\"GL\") > 0 || \n        el.ShiftName.indexOf(\"DO\") > 0 ||\n        el.ShiftName.indexOf(\"XO\") > 0 ) {return el}\n})\nmsg2.payload = newPayload2\nmsg2.topic = \"onshift\"\nreturn msg2;",
+        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != undefined && \n        el.Firstname != undefined) { return el };\n});\nvar newPayload2 = newPayload.filter(function(el) {\n    if (el.ShiftName.indexOf(\"GL\") > 0 || \n        el.ShiftName.indexOf(\"DO\") > 0 ||\n        el.ShiftName.indexOf(\"CO\") > 0 ||\n        el.ShiftName.indexOf(\"XO\") > 0 ) {return el}\n})\nmsg2.payload = newPayload2\nmsg2.topic = \"onshift\"\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1960,7 +1960,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1120,
+        "x": 980,
         "y": 160,
         "wires": []
     },
@@ -2091,7 +2091,7 @@
         "type": "debug",
         "z": "e0d673d05b136ba1",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2283,7 +2283,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 90,
+        "x": 110,
         "y": 260,
         "wires": [
             [
