@@ -1803,7 +1803,7 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "removeEmptyItems",
-        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != undefined && \n        el.Firstname != undefined) { return el };\n});\nmsg2.payload = newPayload\nmsg2.topic = \"onshift\"\nreturn msg2;",
+        "func": "var msg2 = msg\nvar newPayload = msg.payload.filter(function (el) {\n    if (el.ShiftName != undefined && \n        el.Firstname != undefined) { return el };\n});\nmsg2.payload = newPayload\nmsg2.topic = \"onShiftAll\"\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1815,7 +1815,8 @@
             [
                 "bdfe4e9e09512596",
                 "193af0ee148c96ef",
-                "025ea7424a3af85d"
+                "025ea7424a3af85d",
+                "ebc7c07c03d45a4c"
             ]
         ]
     },
@@ -1832,8 +1833,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 910,
-        "y": 320,
+        "x": 810,
+        "y": 300,
         "wires": []
     },
     {
@@ -1996,7 +1997,7 @@
         "type": "function",
         "z": "25fcc8c591bf5c97",
         "name": "COXODOGLOnly",
-        "func": "var msg2 = msg\nvar newPayload2 = msg.payload.filter(function (el) {\n    if (el.ShiftName.indexOf(\"GL\") > 0 ||\n        el.ShiftName.indexOf(\"DO\") > 0 ||\n        el.ShiftName.indexOf(\"CO\") > 0 ||\n        el.ShiftName.indexOf(\"XO\") > 0) { return el }\n})\nmsg2.payload = newPayload2\nmsg2.topic = \"onshift\"\nreturn msg2;",
+        "func": "var msg2 = msg\nvar newPayload2 = msg.payload.filter(function (el) {\n    if (el.ShiftName.indexOf(\"GL\") > 0 ||\n        el.ShiftName.indexOf(\"DO\") > 0 ||\n        el.ShiftName.indexOf(\"CO\") > 0 ||\n        el.ShiftName.indexOf(\"XO\") > 0) { return el }\n})\nmsg2.payload = newPayload2\nmsg2.topic = \"onshift\"\nmsg2._msgid = \"\"\nreturn msg2;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2009,6 +2010,24 @@
                 "29515021ebbfb9e9"
             ]
         ]
+    },
+    {
+        "id": "ebc7c07c03d45a4c",
+        "type": "mqtt out",
+        "z": "25fcc8c591bf5c97",
+        "name": "allOnNow",
+        "topic": "onShiftAll",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9f0db706b304f79e",
+        "x": 800,
+        "y": 340,
+        "wires": []
     },
     {
         "id": "de9052122283d962",
